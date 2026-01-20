@@ -3,1519 +3,1071 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 16: O Futuro com "Going To" (Mobile Optimized)</title>
+    <title>Aula 16: Intenções e Planos Concretos – O Futuro com "Going To"</title>
+    
+    <!-- Fonte Inter e Courier Prime -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Courier+Prime&display=swap" rel="stylesheet">
+
     <style>
+        /* --- Reset e Variáveis --- */
         :root {
             --primary-color: #3498db;
             --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --bg-light: #f8f9fa;
-            --text-color: #333;
+            --accent-color: #e67e22; 
+            --bg-color: #f0f2f5;
             --card-bg: #ffffff;
-            --border-radius: 12px;
-            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --text-color: #333333;
+            --gray-text: #7f8c8d;
+            --code-bg: #f0f0f0;
+            --code-color: #c0392b;
+            --success-color: #27ae60;
         }
 
-        /* Reset Global */
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
-            color: var(--text-color);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
 
+        /* --- Container Principal --- */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 20px 15px;
+            background-color: var(--card-bg);
+            min-height: 100vh;
         }
 
-        /* Navigation & Print Buttons */
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .nav-btn, .print-btn {
-            display: inline-block;
+        /* --- Navegação --- */
+        .nav-btn {
+            display: block;
+            background-color: var(--secondary-color);
+            color: white;
             padding: 12px 20px;
             text-decoration: none;
             border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
             font-weight: 600;
-            transition: background 0.2s;
             text-align: center;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            color: white;
-            flex: 1; /* Botões ocupam espaço igual */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        @media (min-width: 600px) { .nav-btn { display: inline-block; width: auto; } }
 
-        .nav-btn { background-color: var(--secondary-color); }
-        .nav-btn:hover { background-color: #1a252f; }
-
-        .print-btn { background-color: var(--accent-color); }
-        .print-btn:hover { background-color: #c0392b; }
-
-        /* Headers */
+        /* --- Tipografia --- */
         h1 {
-            text-align: center;
             color: var(--secondary-color);
-            font-size: 1.6rem;
+            font-size: 1.5rem;
+            text-align: center;
             margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
             line-height: 1.3;
         }
 
-        h2, h3 {
-            color: var(--secondary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 8px;
-            margin-top: 30px;
-            font-size: 1.4rem;
-        }
+        h2, h3 { color: var(--secondary-color); margin-top: 2.5rem; }
+        h4 { color: #c0392b; margin-top: 1.5rem; }
 
-        h4 {
-            color: var(--primary-color);
-            margin-top: 20px;
-        }
+        p { margin-bottom: 1rem; }
+        strong { color: var(--secondary-color); font-weight: 700; }
+        .example-word { color: #2980b9; font-weight: 700; }
 
-        /* Cards & Sections */
-        .theme-intro, .nota-gramatical, .nota-dica, .extra-task, .card, .tarefa-extra {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
+        /* --- Introdução e Blocos --- */
+        .theme-intro {
+            background-color: #eaf2f8;
             border-left: 5px solid var(--primary-color);
-            width: 100%;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .theme-intro strong { color: #2980b9; }
+
+        /* --- Tabelas Gramaticais (Scroll Horizontal) --- */
+        .grammar-table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
         }
 
-        .nota-dica { border-left-color: #16a085; background-color: #e8f6f3; }
-        .extra-task, .tarefa-extra { border-left-color: #9b59b6; background-color: #f5eef8; }
-        .nota-gramatical { border-left-color: #f39c12; background-color: #fffbf0; }
-
-        /* Mobile Optimized Tables (Listas de frases) */
-        .mobile-table {
+        table.grammar-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
+            min-width: 600px;
         }
 
-        .mobile-table th {
+        table.grammar-table th, table.grammar-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+
+        table.grammar-table th {
             background-color: var(--secondary-color);
             color: white;
-            padding: 12px;
-            text-align: left;
         }
+        table.grammar-table tr:nth-child(even) { background-color: #f9f9f9; }
 
-        .mobile-table td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-        }
-
-        .mobile-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Specific Column Styles */
-        .col-english {
-            width: 45%;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-
-        .col-details {
-            width: 55%;
-        }
-
-        /* Stacked Details Styles */
-        .ipa-text {
-            font-family: 'Courier New', monospace;
-            color: #e67e22;
-            font-size: 0.9em;
-            display: block;
-            margin-bottom: 4px;
-            word-wrap: break-word;
-        }
-
-        .pronunciation-text {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 0.85em;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .translation-text {
-            color: #555;
-            font-size: 0.95em;
-            display: block;
-            border-top: 1px dashed #eee;
-            padding-top: 4px;
-        }
-
-        .example-word {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        /* Audio Button */
-        .audio-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin-left: 5px;
-            padding: 5px;
-            border-radius: 50%;
-            transition: background 0.2s;
-            vertical-align: middle;
-        }
-
-        .audio-btn:hover {
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-        
-        .audio-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Vocab Layout */
-        .vocab-item {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-
-        .vocab-word {
-            font-size: 1.1em;
-            color: var(--secondary-color);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .vocab-details {
-            margin-top: 5px;
-            padding-left: 10px;
-            border-left: 3px solid #ddd;
-        }
-
-        /* Exercises */
-        .fill-in-blank {
-            color: var(--primary-color);
-            font-weight: bold;
-            display: inline-block;
-            min-width: 60px;
-            text-align: center;
-            border-bottom: 1px solid var(--primary-color);
-        }
-
-        .exercise-list li {
-            margin-bottom: 12px;
-        }
-
-        /* Gabarito Section */
-        details.gabarito {
-            background-color: #f1f1f1;
-            padding: 15px;
-            border-radius: 8px;
+        /* --- GRID DE CARDS (Vocabulário e Frases) --- */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
             margin-top: 20px;
         }
+        @media (min-width: 768px) { .vocab-grid { grid-template-columns: 1fr 1fr; } }
 
-        details.gabarito summary {
-            font-weight: bold;
-            cursor: pointer;
-            color: var(--secondary-color);
-        }
-
-        .quiz-options { list-style: none; padding: 0; }
-        .quiz-options li { margin-bottom: 8px; padding: 8px; background: white; border-radius: 4px; }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #7f8c8d;
-        }
-
-        /* Estilo Específico para Tabelas de Estrutura */
-        .structure-table {
-            min-width: 100%; 
-        }
-        .structure-table th, .structure-table td {
-            white-space: nowrap;
-            padding: 10px;
-            text-align: left;
-        }
-        .scroll-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+        .vocab-item {
             background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .vocab-item:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+
+        .vocab-content { flex: 1; padding-right: 15px; min-width: 0; }
+
+        .vocab-en {
+            font-size: 1.05rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
 
-        /* PRINT STYLES - Esconde elementos desnecessários ao imprimir */
-        @media print {
-            .btn-group, .audio-btn, .nav-btn, details.gabarito {
-                display: none !important;
-            }
-            body {
-                background-color: white;
-            }
-            .container {
-                max-width: 100%;
-                width: 100%;
-                box-shadow: none;
-                padding: 0;
-            }
-            .mobile-table, .card, .theme-intro {
-                box-shadow: none;
-                border: 1px solid #ddd;
-                page-break-inside: avoid; /* Evita quebrar tabelas no meio da página */
-            }
-            h1 {
-                font-size: 18pt;
-            }
-            h2 {
-                font-size: 16pt;
-                page-break-before: always; /* Começa seções principais em nova página se necessário */
-            }
-            /* Ajuste para tabelas impressas */
-            .mobile-table th, .mobile-table td {
-                padding: 5px;
-                font-size: 10pt;
-            }
-            /* Esconde ícones emoji se desejar economizar tinta, mas vou manter para contexto */
+        .vocab-ipa-block { display: block; margin-bottom: 6px; }
+        
+        .vocab-ipa {
+            font-family: 'Courier Prime', monospace;
+            color: var(--code-color);
+            background-color: var(--code-bg);
+            font-size: 0.85rem;
+            padding: 3px 6px;
+            border-radius: 4px;
+            display: inline-block;
         }
 
-        /* Small screen adjustments */
-        @media (max-width: 600px) {
-            .mobile-table:not(.structure-table) thead { display: none; }
-            .mobile-table:not(.structure-table) td { 
-                display: block; 
-                width: 100%; 
-                padding: 10px 15px;
-            }
-            .mobile-table:not(.structure-table) .col-english {
-                background-color: #f9f9f9;
-                padding-top: 15px;
-                border-bottom: none;
-            }
-            .mobile-table:not(.structure-table) .col-details {
-                padding-bottom: 15px;
-                border-bottom: 2px solid #e0e0e0;
-            }
-            
-            .container { padding: 10px; }
-            h1 { font-size: 1.5rem; }
+        .vocab-phonetic-pt {
+            display: block;
+            font-style: italic;
+            color: var(--success-color);
+            font-size: 0.9rem;
+            margin-top: 4px;
         }
+
+        .vocab-pt {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+            font-weight: 600;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 8px;
+        }
+
+        /* --- Botão de Áudio --- */
+        .audio-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3);
+            flex-shrink: 0;
+            margin-top: 5px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .audio-btn:active { transform: scale(0.92); }
+        .audio-btn:hover { background-color: #2980b9; }
+
+        /* --- Seções Extras --- */
+        .tarefa-extra, .nota-dica, .secao-exercicios, .nota-gramatical {
+            background-color: #f8f9fa;
+            border-left: 5px solid #9b59b6;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .nota-dica { border-left-color: #16a085; background-color: #e8f6f3; }
+        .nota-gramatical { border-left-color: #27ae60; background-color: #eafaf1; }
+        .secao-exercicios { border-left-color: #f39c12; background-color: #fef9e7; }
+
+        .fill-in-blank {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px solid #bdc3c7;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 0 5px;
+        }
+
+        details {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: 5px;
+        }
+        summary { cursor: pointer; font-weight: bold; color: var(--primary-color); }
+        
+        ol li { margin-bottom: 12px; }
+
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="btn-group">
-        <a href="#" class="nav-btn">⬅️ Voltar ao Menu</a>
-        <button onclick="window.print()" class="print-btn">🖨️ Imprimir Aula</button>
-    </div>
+    <a href="#menu" class="nav-btn">← Voltar ao Menu</a>
 
-    <h1>Aula 16: Intenções e Planos Concretos – O Futuro com "Going To" <span style="font-size:1.2em">🎯📝</span><br><small>(Intentions and Concrete Plans – The Future with "Going To")</small></h1>
+    <h1>Aula 16: Intenções e Planos Concretos – O Futuro com "Going To" 🎯📝<br>
+        <span style="font-size:0.65em; font-weight:400; color:#7f8c8d; display:block; margin-top:5px;">(Intentions and Concrete Plans – The Future with "Going To")</span>
+    </h1>
 
     <div class="theme-intro">
         <p>Olá e bem-vindo(a) à Aula 16! 🌟</p>
         <p>Na aula anterior, vimos como usar "will" para falar sobre o futuro. Hoje, vamos aprender outra forma muito comum de expressar o futuro: usando <strong>"be going to"</strong>. Esta estrutura é ideal para falar sobre <strong>planos já decididos, intenções claras e previsões baseadas em evidências</strong>. Nosso tema será <strong>Metas pessoais e profissionais para o próximo ano</strong>. Vamos definir nossos objetivos! 📈📚🛠️</p>
     </div>
 
-    <!-- Section 16.1 Intro -->
-    <section>
-        <h2>16.1 Planos Mais Definidos: Usos do Futuro com "Going To" 📌</h2>
+    <h2>16. Planejando o Futuro com "Be Going To"</h2>
+
+    <section id="going-to-intro">
+        <h3>16.1 Planos Mais Definidos: Usos do Futuro com "Going To" 📌</h3>
         <p>A estrutura <strong>"be going to"</strong> é usada para falar sobre o futuro, mas com um foco diferente de "will".</p>
         
-        <div class="card">
-            <ul style="padding-left: 20px;">
-                <li><strong>Planos e Intenções (Plans and Intentions):</strong> Para ações que já decidimos ou planejamos fazer no futuro.
-                    <div class="vocab-details">
-                        <p>I <span class="example-word">am going to learn</span> Spanish next year. <button class="audio-btn" onclick="playAudio('I am going to learn Spanish next year.')">🔊</button></p>
-                        <span class="ipa-text">/aɪ æm ˈɡoʊɪŋ tə lɜːrn ˈspænɪʃ nekst jɪr/</span>
-                        <span class="pronunciation-text">(ÁI ÉM GÔU-in tã LÃRN SPÉ-nêsh NÉKST IÍR)</span>
-                        <span class="translation-text">Eu vou aprender espanhol no próximo ano.</span>
-                    </div>
-                </li>
-                <br>
-                <li><strong>Previsões Baseadas em Evidências (Predictions based on evidence):</strong> Quando algo no presente nos faz acreditar que algo vai acontecer.
-                    <div class="vocab-details">
-                        <p>Look at those dark clouds! It <span class="example-word">is going to rain</span>. <button class="audio-btn" onclick="playAudio('Look at those dark clouds! It is going to rain.')">🔊</button></p>
-                        <span class="ipa-text">/lʊk æt ðoʊz dɑːrk klaʊdz ɪt ɪz ˈɡoʊɪŋ tə reɪn/</span>
-                        <span class="pronunciation-text">(LÚK ét DHÔUZ DÁRK CLÁUDZ! ÊT êz GÔU-in tã RÊIN)</span>
-                        <span class="translation-text">Olhe aquelas nuvens escuras! Vai chover.</span>
-                    </div>
-                </li>
-            </ul>
-            <p><em>Dica: Na fala informal, "going to" é frequentemente pronunciado como <strong>"gonna"</strong> (GÂ-nã), mas evite usar "gonna" na escrita formal.</em></p>
+        <div class="vocab-grid">
+            <div class="vocab-item">
+                <div class="vocab-content">
+                    <span class="vocab-en">I <span class="example-word">am going to learn</span> Spanish next year.</span>
+                    <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm ˈɡoʊɪŋ tə lɜːrn ˈspænɪʃ nekst jɪr/</span></div>
+                    <span class="vocab-phonetic-pt">(ÁI ÉM GÔU-in tã LÃRN SPÉ-nêsh NÉKST IÍR)</span>
+                    <span class="vocab-pt">Eu vou aprender espanhol no próximo ano. (Planos e Intenções)</span>
+                </div>
+                <button class="audio-btn" onclick="playAudio('I am going to learn Spanish next year.')">🔊</button>
+            </div>
+            
+            <div class="vocab-item">
+                <div class="vocab-content">
+                    <span class="vocab-en">Look at those dark clouds! It <span class="example-word">is going to rain</span>.</span>
+                    <div class="vocab-ipa-block"><span class="vocab-ipa">/lʊk æt ðoʊz dɑːrk klaʊdz ɪt ɪz ˈɡoʊɪŋ tə reɪn/</span></div>
+                    <span class="vocab-phonetic-pt">(LÚK ét DHÔUZ DÁRK CLÁUDZ! ÊT êz GÔU-in tã RÊIN)</span>
+                    <span class="vocab-pt">Olhe aquelas nuvens escuras! Vai chover. (Previsão com evidência)</span>
+                </div>
+                <button class="audio-btn" onclick="playAudio('Look at those dark clouds! It is going to rain.')">🔊</button>
+            </div>
         </div>
+
+        <p style="margin-top:15px; font-size: 0.9em;">Na fala informal, "going to" é frequentemente pronunciado como <strong>"gonna"</strong> (<span class="vocab-ipa">/ˈɡʌnə/</span>), mas evite na escrita formal.</p>
     </section>
 
-    <!-- Section 16.2 Structure -->
-    <section>
-        <h2>16.2 Estrutura: "To Be" + "going to" + verbo base 🧱</h2>
-        <p><strong>Estrutura Afirmativa:</strong> Sujeito + Verbo "To Be" (am/is/are) + going to + Verbo (forma base).</p>
+    <section id="going-to-structure">
+        <h3>16.2 Estrutura: Verbo "To Be" + "going to" + verbo base 🧱</h3>
+        <p><strong>Sujeito + Verbo "To Be" (am/is/are) + going to + Verbo (forma base) + Complemento.</strong></p>
         
-        <div class="scroll-wrapper">
-            <table class="mobile-table structure-table">
+        <div class="grammar-table-wrapper">
+            <table class="grammar-table">
                 <thead>
                     <tr>
                         <th>Sujeito</th>
                         <th>To Be</th>
-                        <th>going to</th>
-                        <th>Verbo (Base)</th>
-                        <th>Complemento</th>
+                        <th>Going To</th>
+                        <th>Verbo</th>
+                        <th>Exemplo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>I</td><td>am</td><td>going to</td><td>study</td><td>for my exam.</td></tr>
-                    <tr><td>You</td><td>are</td><td>going to</td><td>travel</td><td>next month.</td></tr>
-                    <tr><td>He/She/It</td><td>is</td><td>going to</td><td>start</td><td>a new job.</td></tr>
-                    <tr><td>We</td><td>are</td><td>going to</td><td>buy</td><td>a new car.</td></tr>
-                    <tr><td>They</td><td>are</td><td>going to</td><td>move</td><td>to a new city.</td></tr>
+                    <tr><td>I</td><td>am</td><td>going to</td><td>study</td><td>I am going to study.</td></tr>
+                    <tr><td>You</td><td>are</td><td>going to</td><td>travel</td><td>You are going to travel.</td></tr>
+                    <tr><td>He/She/It</td><td>is</td><td>going to</td><td>start</td><td>She is going to start.</td></tr>
+                    <tr><td>We</td><td>are</td><td>going to</td><td>buy</td><td>We are going to buy.</td></tr>
+                    <tr><td>They</td><td>are</td><td>going to</td><td>move</td><td>They are going to move.</td></tr>
                 </tbody>
             </table>
         </div>
-        <p style="font-size: 0.9em; color: #666;">ℹ️ Deslize a tabela para o lado se necessário.</p>
     </section>
 
-    <!-- Section 16.3 Affirmative -->
-    <section>
-        <h2>16.3 Afirmando Intenções 👍</h2>
-        <p>Frases afirmativas sobre metas e planos.</p>
+    <section id="going-to-affirmative">
+        <h3>16.3 Afirmando Intenções 👍</h3>
+        <p>Frases afirmativas sobre metas pessoais e profissionais.</p>
         
-        <table class="mobile-table">
-            <thead>
-                <tr>
-                    <th>Inglês</th>
-                    <th>Detalhes (Fonética & Tradução)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="col-english">
-                        I <span class="example-word">am going to learn</span> a new skill next year.
-                        <button class="audio-btn" onclick="playAudio('I am going to learn a new skill next year.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/aɪ æm ˈɡoʊɪŋ tə lɜːrn ə nuː skɪl nekst jɪr/</span>
-                        <span class="pronunciation-text">(ÁI ÉM GÔU-in tã LÃRN ã NÚU SKÊL NÉKST IÍR)</span>
-                        <span class="translation-text">Eu vou aprender uma nova habilidade no próximo ano.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        You <span class="example-word">are going to start</span> your own business.
-                        <button class="audio-btn" onclick="playAudio('You are going to start your own business.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/juː ɑːr ˈɡoʊɪŋ tə stɑːrt jɔːr oʊn ˈbɪznəs/</span>
-                        <span class="pronunciation-text">(IÚU ÁR GÔU-in tã STÁRT iór ÔUN BÊZ-nãs)</span>
-                        <span class="translation-text">Você vai começar seu próprio negócio.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        He <span class="example-word">is going to apply</span> for a promotion at work.
-                        <button class="audio-btn" onclick="playAudio('He is going to apply for a promotion at work.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/hiː ɪz ˈɡoʊɪŋ tu əˈplaɪ fər ə prəˈmoʊʃn æt wɜːrk/</span>
-                        <span class="pronunciation-text">(RÍI ÊZ GÔU-in tu ã-PLÁI fór ã prã-MÔU-shãn ét UÃRK)</span>
-                        <span class="translation-text">Ele vai se candidatar a uma promoção no trabalho.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        She <span class="example-word">is going to renovate</span> her kitchen.
-                        <button class="audio-btn" onclick="playAudio('She is going to renovate her kitchen.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ʃiː ɪz ˈɡoʊɪŋ tə ˈrenəveɪt hər ˈkɪtʃɪn/</span>
-                        <span class="pronunciation-text">(XÍI ÊZ GÔU-in tã RÉ-nõ-veit rãr KÊ-tchãn)</span>
-                        <span class="translation-text">Ela vai reformar a cozinha dela.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        It looks like it <span class="example-word">is going to be</span> a successful project.
-                        <button class="audio-btn" onclick="playAudio('It looks like it is going to be a successful project.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪt lʊks laɪk ɪt ɪz ˈɡoʊɪŋ tə biː ə səkˈsesfl ˈprɑːdʒekt/</span>
-                        <span class="pronunciation-text">(ÊT LÚKS LÁIK êt êz GÔU-in tã BÍI ã sãk-SÉS-fõl PRÓ-djekt)</span>
-                        <span class="translation-text">Parece que vai ser um projeto de sucesso.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        We <span class="example-word">are going to save</span> more money this year.
-                        <button class="audio-btn" onclick="playAudio('We are going to save more money this year.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wiː ɑːr ˈɡoʊɪŋ tə seɪv mɔːr ˈmʌni ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(UÍI ÁR GÔU-in tã SÊIV MÓR MÂ-ni DHÊS IÍR)</span>
-                        <span class="translation-text">Nós vamos economizar mais dinheiro este ano.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        They <span class="example-word">are going to move</span> to a bigger house.
-                        <button class="audio-btn" onclick="playAudio('They are going to move to a bigger house.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðeɪ ɑːr ˈɡoʊɪŋ tə muːv tu ə ˈbɪɡər haʊs/</span>
-                        <span class="pronunciation-text">(DHÊI ÁR GÔU-in tã MÚUV tu ã BÊ-gãr RÁUS)</span>
-                        <span class="translation-text">Eles vão se mudar para uma casa maior.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        I <span class="example-word">am going to start</span> exercising regularly.
-                        <button class="audio-btn" onclick="playAudio('I am going to start exercising regularly.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/aɪ æm ˈɡoʊɪŋ tə stɑːrt ˈeksərsaɪzɪŋ ˈreɡjələrli/</span>
-                        <span class="pronunciation-text">(ÁI ÉM GÔU-in tã STÁRT ÉK-sãr-sai-zin RÉ-guiu-lãr-li)</span>
-                        <span class="translation-text">Eu vou começar a me exercitar regularmente.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        You <span class="example-word">are going to get</span> a new certification for your career.
-                        <button class="audio-btn" onclick="playAudio('You are going to get a new certification for your career.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/juː ɑːr ˈɡoʊɪŋ tə ɡet ə nuː ˌsɜːrtɪfɪˈkeɪʃn fər jɔːr kəˈrɪr/</span>
-                        <span class="pronunciation-text">(IÚU ÁR GÔU-in tã GUÉT ã NÚU sãr-tĩ-fĩ-KÊI-shãn fór iór cã-RÍIR)</span>
-                        <span class="translation-text">Você vai obter uma nova certificação para sua carreira.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        He <span class="example-word">is going to travel</span> more for work.
-                        <button class="audio-btn" onclick="playAudio('He is going to travel more for work.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/hiː ɪz ˈɡoʊɪŋ tə ˈtrævl mɔːr fər wɜːrk/</span>
-                        <span class="pronunciation-text">(RÍI ÊZ GÔU-in tã TRÉ-võl MÓR fór UÃRK)</span>
-                        <span class="translation-text">Ele vai viajar mais a trabalho.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        She <span class="example-word">is going to write</span> a book.
-                        <button class="audio-btn" onclick="playAudio('She is going to write a book.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ʃiː ɪz ˈɡoʊɪŋ tə raɪt ə bʊk/</span>
-                        <span class="pronunciation-text">(XÍI ÊZ GÔU-in tã RÁIT ã BÚK)</span>
-                        <span class="translation-text">Ela vai escrever um livro.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        We <span class="example-word">are going to adopt</span> a pet.
-                        <button class="audio-btn" onclick="playAudio('We are going to adopt a pet.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wiː ɑːr ˈɡoʊɪŋ tu əˈdɑːpt ə pet/</span>
-                        <span class="pronunciation-text">(UÍI ÁR GÔU-in tu ã-DÓPT ã PÉT)</span>
-                        <span class="translation-text">Nós vamos adotar um animal de estimação.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        They <span class="example-word">are going to volunteer</span> at the local shelter.
-                        <button class="audio-btn" onclick="playAudio('They are going to volunteer at the local shelter.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðeɪ ɑːr ˈɡoʊɪŋ tə ˌvɑːlənˈtɪr æt ðə ˈloʊkl ˈʃeltər/</span>
-                        <span class="pronunciation-text">(DHÊI ÁR GÔU-in tã vó-lãn-TÍIR ét dhã LÔU-cõl XÉL-tãr)</span>
-                        <span class="translation-text">Eles vão ser voluntários no abrigo local.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        I <span class="example-word">am going to read</span> more books this year.
-                        <button class="audio-btn" onclick="playAudio('I am going to read more books this year.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/aɪ æm ˈɡoʊɪŋ tə riːd mɔːr bʊks ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(ÁI ÉM GÔU-in tã RÍID MÓR BÚKS DHÊS IÍR)</span>
-                        <span class="translation-text">Eu vou ler mais livros este ano.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        You <span class="example-word">are going to change</span> your career path.
-                        <button class="audio-btn" onclick="playAudio('You are going to change your career path.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/juː ɑːr ˈɡoʊɪŋ tə tʃeɪndʒ jɔːr kəˈrɪr pæθ/</span>
-                        <span class="pronunciation-text">(IÚU ÁR GÔU-in tã TCHÊINDJ iór cã-RÍIR PÉTH)</span>
-                        <span class="translation-text">Você vai mudar sua trajetória profissional.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        He <span class="example-word">is going to take</span> a photography course.
-                        <button class="audio-btn" onclick="playAudio('He is going to take a photography course.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/hiː ɪz ˈɡoʊɪŋ tə teɪk ə fəˈtɑːɡrəfi kɔːrs/</span>
-                        <span class="pronunciation-text">(RÍI ÊZ GÔU-in tã TÊIK ã fõ-TÓ-grã-fi CÓRS)</span>
-                        <span class="translation-text">Ele vai fazer um curso de fotografia.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        She <span class="example-word">is going to spend</span> more time with her family.
-                        <button class="audio-btn" onclick="playAudio('She is going to spend more time with her family.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ʃiː ɪz ˈɡoʊɪŋ tə spend mɔːr taɪm wɪð hər ˈfæməli/</span>
-                        <span class="pronunciation-text">(XÍI ÊZ GÔU-in tã SPÉND MÓR TÁIM uêDH rãr FÉ-mã-li)</span>
-                        <span class="translation-text">Ela vai passar mais tempo com a família dela.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        Look at the traffic! We <span class="example-word">are going to be</span> late.
-                        <button class="audio-btn" onclick="playAudio('Look at the traffic! We are going to be late.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/lʊk æt ðə ˈtræfɪk wiː ɑːr ˈɡoʊɪŋ tə biː leɪt/</span>
-                        <span class="pronunciation-text">(LÚK ét dhã TRÉ-fêk! UÍI ÁR GÔU-in tã BÍI LÊIT)</span>
-                        <span class="translation-text">Olhe o trânsito! Nós vamos nos atrasar.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        They <span class="example-word">are going to launch</span> a new product next quarter.
-                        <button class="audio-btn" onclick="playAudio('They are going to launch a new product next quarter.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðeɪ ɑːr ˈɡoʊɪŋ tə lɔːntʃ ə nuː ˈprɑːdʌkt nekst ˈkwɔːrtər/</span>
-                        <span class="pronunciation-text">(DHÊI ÁR GÔU-in tã LÓNTCH ã NÚU PRÓ-dâkt NÉKST CUÓR-tãr)</span>
-                        <span class="translation-text">Eles vão lançar um novo produto no próximo trimestre.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        My company <span class="example-word">is going to expand</span> its operations.
-                        <button class="audio-btn" onclick="playAudio('My company is going to expand its operations.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/maɪ ˈkʌmpəni ɪz ˈɡoʊɪŋ tu ɪkˈspænd ɪts ˌɑːpəˈreɪʃnz/</span>
-                        <span class="pronunciation-text">(MÁI CÂM-pã-ni ÊZ GÔU-in tu ek-SPÉND êts ó-pã-RÊI-shãnz)</span>
-                        <span class="translation-text">Minha empresa vai expandir suas operações.</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="vocab-grid">
+            <!-- Frase 1 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">I <span class="example-word">am going to learn</span> a new skill next year.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm ˈɡoʊɪŋ tə lɜːrn ə nuː skɪl nekst jɪr/</span></div>
+                <span class="vocab-phonetic-pt">(ÁI ÉM GÔU-in tã LÃRN ã NÚU SKÊL NÉKST IÍR)</span>
+                <span class="vocab-pt">Eu vou aprender uma nova habilidade no próximo ano.</span>
+            </div><button class="audio-btn" onclick="playAudio('I am going to learn a new skill next year.')">🔊</button></div>
+
+            <!-- Frase 2 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">You <span class="example-word">are going to start</span> your own business.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/juː ɑːr ˈɡoʊɪŋ tə stɑːrt jɔːr oʊn ˈbɪznəs/</span></div>
+                <span class="vocab-phonetic-pt">(IÚU ÁR GÔU-in tã STÁRT iór ÔUN BÊZ-nãs)</span>
+                <span class="vocab-pt">Você vai começar seu próprio negócio.</span>
+            </div><button class="audio-btn" onclick="playAudio('You are going to start your own business.')">🔊</button></div>
+
+            <!-- Frase 3 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">He <span class="example-word">is going to apply</span> for a promotion at work.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/hiː ɪz ˈɡoʊɪŋ tu əˈplaɪ fər ə prəˈmoʊʃn æt wɜːrk/</span></div>
+                <span class="vocab-phonetic-pt">(RÍI ÊZ GÔU-in tu ã-PLÁI fór ã prã-MÔU-shãn ét UÃRK)</span>
+                <span class="vocab-pt">Ele vai se candidatar a uma promoção no trabalho.</span>
+            </div><button class="audio-btn" onclick="playAudio('He is going to apply for a promotion at work.')">🔊</button></div>
+
+            <!-- Frase 4 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">She <span class="example-word">is going to renovate</span> her kitchen.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ʃiː ɪz ˈɡoʊɪŋ tə ˈrenəveɪt hər ˈkɪtʃɪn/</span></div>
+                <span class="vocab-phonetic-pt">(XÍI ÊZ GÔU-in tã RÉ-nõ-veit rãr KÊ-tchãn)</span>
+                <span class="vocab-pt">Ela vai reformar a cozinha dela.</span>
+            </div><button class="audio-btn" onclick="playAudio('She is going to renovate her kitchen.')">🔊</button></div>
+
+            <!-- Frase 5 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">It looks like it <span class="example-word">is going to be</span> a successful project.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪt lʊks laɪk ɪt ɪz ˈɡoʊɪŋ tə biː ə səkˈsesfl ˈprɑːdʒekt/</span></div>
+                <span class="vocab-phonetic-pt">(ÊT LÚKS LÁIK êt êz GÔU-in tã BÍI ã sãk-SÉS-fõl PRÓ-djekt)</span>
+                <span class="vocab-pt">Parece que vai ser um projeto de sucesso.</span>
+            </div><button class="audio-btn" onclick="playAudio('It looks like it is going to be a successful project.')">🔊</button></div>
+
+            <!-- Frase 6 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">We <span class="example-word">are going to save</span> more money this year.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wiː ɑːr ˈɡoʊɪŋ tə seɪv mɔːr ˈmʌni ðɪs jɪr/</span></div>
+                <span class="vocab-phonetic-pt">(UÍI ÁR GÔU-in tã SÊIV MÓR MÂ-ni DHÊS IÍR)</span>
+                <span class="vocab-pt">Nós vamos economizar mais dinheiro este ano.</span>
+            </div><button class="audio-btn" onclick="playAudio('We are going to save more money this year.')">🔊</button></div>
+
+            <!-- Frase 7 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">They <span class="example-word">are going to move</span> to a bigger house.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ðeɪ ɑːr ˈɡoʊɪŋ tə muːv tu ə ˈbɪɡər haʊs/</span></div>
+                <span class="vocab-phonetic-pt">(DHÊI ÁR GÔU-in tã MÚUV tu ã BÊ-gãr RÁUS)</span>
+                <span class="vocab-pt">Eles vão se mudar para uma casa maior.</span>
+            </div><button class="audio-btn" onclick="playAudio('They are going to move to a bigger house.')">🔊</button></div>
+
+            <!-- Frase 8 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">I <span class="example-word">am going to start</span> exercising regularly.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm ˈɡoʊɪŋ tə stɑːrt ˈeksərsaɪzɪŋ ˈreɡjələrli/</span></div>
+                <span class="vocab-phonetic-pt">(ÁI ÉM GÔU-in tã STÁRT ÉK-sãr-sai-zin RÉ-guiu-lãr-li)</span>
+                <span class="vocab-pt">Eu vou começar a me exercitar regularmente.</span>
+            </div><button class="audio-btn" onclick="playAudio('I am going to start exercising regularly.')">🔊</button></div>
+
+            <!-- Frase 9 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">You <span class="example-word">are going to get</span> a new certification.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/juː ɑːr ˈɡoʊɪŋ tə ɡet ə nuː ˌsɜːrtɪfɪˈkeɪʃn/</span></div>
+                <span class="vocab-phonetic-pt">(IÚU ÁR GÔU-in tã GUÉT ã NÚU sãr-tĩ-fĩ-KÊI-shãn)</span>
+                <span class="vocab-pt">Você vai obter uma nova certificação.</span>
+            </div><button class="audio-btn" onclick="playAudio('You are going to get a new certification.')">🔊</button></div>
+
+            <!-- Frase 10 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">He <span class="example-word">is going to travel</span> more for work.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/hiː ɪz ˈɡoʊɪŋ tə ˈtrævl mɔːr fər wɜːrk/</span></div>
+                <span class="vocab-phonetic-pt">(RÍI ÊZ GÔU-in tã TRÉ-võl MÓR fór UÃRK)</span>
+                <span class="vocab-pt">Ele vai viajar mais a trabalho.</span>
+            </div><button class="audio-btn" onclick="playAudio('He is going to travel more for work.')">🔊</button></div>
+
+            <!-- Frase 11 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">She <span class="example-word">is going to write</span> a book.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ʃiː ɪz ˈɡoʊɪŋ tə raɪt ə bʊk/</span></div>
+                <span class="vocab-phonetic-pt">(XÍI ÊZ GÔU-in tã RÁIT ã BÚK)</span>
+                <span class="vocab-pt">Ela vai escrever um livro.</span>
+            </div><button class="audio-btn" onclick="playAudio('She is going to write a book.')">🔊</button></div>
+
+            <!-- Frase 12 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">We <span class="example-word">are going to adopt</span> a pet.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wiː ɑːr ˈɡoʊɪŋ tu əˈdɑːpt ə pet/</span></div>
+                <span class="vocab-phonetic-pt">(UÍI ÁR GÔU-in tu ã-DÓPT ã PÉT)</span>
+                <span class="vocab-pt">Nós vamos adotar um animal de estimação.</span>
+            </div><button class="audio-btn" onclick="playAudio('We are going to adopt a pet.')">🔊</button></div>
+
+            <!-- Frase 13 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">They <span class="example-word">are going to volunteer</span> at the shelter.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ðeɪ ɑːr ˈɡoʊɪŋ tə ˌvɑːlənˈtɪr æt ðə ˈʃeltər/</span></div>
+                <span class="vocab-phonetic-pt">(DHÊI ÁR GÔU-in tã vó-lãn-TÍIR ét dhã XÉL-tãr)</span>
+                <span class="vocab-pt">Eles vão ser voluntários no abrigo.</span>
+            </div><button class="audio-btn" onclick="playAudio('They are going to volunteer at the shelter.')">🔊</button></div>
+
+            <!-- Frase 14 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">I <span class="example-word">am going to read</span> more books this year.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm ˈɡoʊɪŋ tə riːd mɔːr bʊks/</span></div>
+                <span class="vocab-phonetic-pt">(ÁI ÉM GÔU-in tã RÍID MÓR BÚKS)</span>
+                <span class="vocab-pt">Eu vou ler mais livros este ano.</span>
+            </div><button class="audio-btn" onclick="playAudio('I am going to read more books this year.')">🔊</button></div>
+
+            <!-- Frase 15 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">You <span class="example-word">are going to change</span> your career path.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/juː ɑːr ˈɡoʊɪŋ tə tʃeɪndʒ jɔːr kəˈrɪr pæθ/</span></div>
+                <span class="vocab-phonetic-pt">(IÚU ÁR GÔU-in tã TCHÊINDJ iór cã-RÍIR PÉTH)</span>
+                <span class="vocab-pt">Você vai mudar sua trajetória profissional.</span>
+            </div><button class="audio-btn" onclick="playAudio('You are going to change your career path.')">🔊</button></div>
+
+            <!-- Frase 16 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">He <span class="example-word">is going to take</span> a photography course.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/hiː ɪz ˈɡoʊɪŋ tə teɪk ə fəˈtɑːɡrəfi kɔːrs/</span></div>
+                <span class="vocab-phonetic-pt">(RÍI ÊZ GÔU-in tã TÊIK ã fõ-TÓ-grã-fi CÓRS)</span>
+                <span class="vocab-pt">Ele vai fazer um curso de fotografia.</span>
+            </div><button class="audio-btn" onclick="playAudio('He is going to take a photography course.')">🔊</button></div>
+
+            <!-- Frase 17 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">She <span class="example-word">is going to spend</span> time with family.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ʃiː ɪz ˈɡoʊɪŋ tə spend taɪm wɪð ˈfæməli/</span></div>
+                <span class="vocab-phonetic-pt">(XÍI ÊZ GÔU-in tã SPÉND TÁIM uêDH FÉ-mã-li)</span>
+                <span class="vocab-pt">Ela vai passar mais tempo com a família.</span>
+            </div><button class="audio-btn" onclick="playAudio('She is going to spend time with family.')">🔊</button></div>
+
+            <!-- Frase 18 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Look at the traffic! We <span class="example-word">are going to be</span> late.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/lʊk æt ðə ˈtræfɪk wiː ɑːr ˈɡoʊɪŋ tə biː leɪt/</span></div>
+                <span class="vocab-phonetic-pt">(LÚK ét dhã TRÉ-fêk! UÍI ÁR GÔU-in tã BÍI LÊIT)</span>
+                <span class="vocab-pt">Olhe o trânsito! Nós vamos nos atrasar.</span>
+            </div><button class="audio-btn" onclick="playAudio('Look at the traffic! We are going to be late.')">🔊</button></div>
+
+            <!-- Frase 19 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">They <span class="example-word">are going to launch</span> a new product.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ðeɪ ɑːr ˈɡoʊɪŋ tə lɔːntʃ ə nuː ˈprɑːdʌkt/</span></div>
+                <span class="vocab-phonetic-pt">(DHÊI ÁR GÔU-in tã LÓNTCH ã NÚU PRÓ-dâkt)</span>
+                <span class="vocab-pt">Eles vão lançar um novo produto.</span>
+            </div><button class="audio-btn" onclick="playAudio('They are going to launch a new product.')">🔊</button></div>
+
+            <!-- Frase 20 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">My company <span class="example-word">is going to expand</span> operations.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/maɪ ˈkʌmpəni ɪz ˈɡoʊɪŋ tu ɪkˈspænd/</span></div>
+                <span class="vocab-phonetic-pt">(MÁI CÂM-pã-ni ÊZ GÔU-in tu ek-SPÉND)</span>
+                <span class="vocab-pt">Minha empresa vai expandir operações.</span>
+            </div><button class="audio-btn" onclick="playAudio('My company is going to expand operations.')">🔊</button></div>
+        </div>
     </section>
 
-    <!-- Section 16.4 Negative -->
-    <section>
-        <h2>16.4 Negando Intenções 👎</h2>
-        <p><strong>Estrutura Negativa:</strong> Sujeito + To Be + not + going to + Verbo.</p>
-        <p>Contrações: <strong>isn't going to</strong>, <strong>aren't going to</strong>, <strong>I'm not going to</strong>.</p>
+    <section id="going-to-negative">
+        <h3>16.4 Negando Intenções 👎</h3>
+        <p>Estrutura: <strong>Sujeito + To Be + NOT + going to + Verbo</strong>.</p>
         
-        <table class="mobile-table">
-            <thead>
-                <tr>
-                    <th>Inglês</th>
-                    <th>Detalhes (Fonética & Tradução)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="col-english">
-                        I <span class="example-word">am not going to quit</span> my job this year.
-                        <button class="audio-btn" onclick="playAudio('I am not going to quit my job this year.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/aɪ æm nɑːt ˈɡoʊɪŋ tə kwɪt maɪ dʒɑːb ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(ÁI ÉM NÓT GÔU-in tã CUÊT mái DJÓB DHÊS IÍR)</span>
-                        <span class="translation-text">Eu não vou pedir demissão do meu emprego este ano.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        You <span class="example-word">aren't going to postpone</span> your studies.
-                        <button class="audio-btn" onclick="playAudio('You aren\'t going to postpone your studies.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/juː ɑːrnt ˈɡoʊɪŋ tə poʊstˈpoʊn jɔːr ˈstʌdiz/</span>
-                        <span class="pronunciation-text">(IÚU ÁRNT GÔU-in tã pôust-PÔUN iór STÂ-diiz)</span>
-                        <span class="translation-text">Você não vai adiar seus estudos.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        He <span class="example-word">isn't going to move</span> to another city.
-                        <button class="audio-btn" onclick="playAudio('He isn\'t going to move to another city.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/hiː ˈɪznt ˈɡoʊɪŋ tə muːv tu əˈnʌðər ˈsɪti/</span>
-                        <span class="pronunciation-text">(RÍI Ê-zãnt GÔU-in tã MÚUV tu ã-NÂ-dhãr SÊ-ti)</span>
-                        <span class="translation-text">Ele não vai se mudar para outra cidade.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        She <span class="example-word">isn't going to start</span> the renovation next week.
-                        <button class="audio-btn" onclick="playAudio('She isn\'t going to start the renovation next week.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ʃiː ˈɪznt ˈɡoʊɪŋ tə stɑːrt ðə ˌrenəˈveɪʃn nekst wiːk/</span>
-                        <span class="pronunciation-text">(XÍI Ê-zãnt GÔU-in tã STÁRT dhã ré-nõ-VÊI-shãn NÉKST UÍIK)</span>
-                        <span class="translation-text">Ela não vai começar a reforma na próxima semana.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        It <span class="example-word">isn't going to be</span> an easy decision.
-                        <button class="audio-btn" onclick="playAudio('It isn\'t going to be an easy decision.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪt ˈɪznt ˈɡoʊɪŋ tə biː ən ˈiːzi dɪˈsɪʒn/</span>
-                        <span class="pronunciation-text">(ÊT Ê-zãnt GÔU-in tã BÍI ãn ÍI-zi dĩ-SÊ-jãn)</span>
-                        <span class="translation-text">Não vai ser uma decisão fácil.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        We <span class="example-word">aren't going to travel</span> this summer.
-                        <button class="audio-btn" onclick="playAudio('We aren\'t going to travel this summer.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wiː ɑːrnt ˈɡoʊɪŋ tə ˈtrævl ðɪs ˈsʌmər/</span>
-                        <span class="pronunciation-text">(UÍI ÁRNT GÔU-in tã TRÉ-võl DHÊS SÂ-mãr)</span>
-                        <span class="translation-text">Nós não vamos viajar neste verão.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        They <span class="example-word">aren't going to buy</span> that expensive car.
-                        <button class="audio-btn" onclick="playAudio('They aren\'t going to buy that expensive car.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðeɪ ɑːrnt ˈɡoʊɪŋ tə baɪ ðæt ɪkˈspensɪv kɑːr/</span>
-                        <span class="pronunciation-text">(DHÊI ÁRNT GÔU-in tã BÁI DHÉT ek-SPÉN-sêv CÁR)</span>
-                        <span class="translation-text">Eles não vão comprar aquele carro caro.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        I <span class="example-word">am not going to apply</span> for that position.
-                        <button class="audio-btn" onclick="playAudio('I am not going to apply for that position.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/aɪ æm nɑːt ˈɡoʊɪŋ tu əˈplaɪ fər ðæt pəˈzɪʃn/</span>
-                        <span class="pronunciation-text">(ÁI ÉM NÓT GÔU-in tu ã-PLÁI fór DHÉT pã-ZÊ-shãn)</span>
-                        <span class="translation-text">Eu não vou me candidatar para aquela vaga.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        You <span class="example-word">aren't going to miss</span> this opportunity.
-                        <button class="audio-btn" onclick="playAudio('You aren\'t going to miss this opportunity.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/juː ɑːrnt ˈɡoʊɪŋ tə mɪs ðɪs ˌɑːpərˈtuːnəti/</span>
-                        <span class="pronunciation-text">(IÚU ÁRNT GÔU-in tã MÊS DHÊS ó-pãr-TÚU-nã-ti)</span>
-                        <span class="translation-text">Você não vai perder esta oportunidade.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        He <span class="example-word">isn't going to invest</span> in that company.
-                        <button class="audio-btn" onclick="playAudio('He isn\'t going to invest in that company.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/hiː ˈɪznt ˈɡoʊɪŋ tu ɪnˈvest ɪn ðæt ˈkʌmpəni/</span>
-                        <span class="pronunciation-text">(RÍI Ê-zãnt GÔU-in tu în-VÉST în DHÉT CÂM-pã-ni)</span>
-                        <span class="translation-text">Ele não vai investir naquela empresa.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        She <span class="example-word">isn't going to change</span> her mind.
-                        <button class="audio-btn" onclick="playAudio('She isn\'t going to change her mind.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ʃiː ˈɪznt ˈɡoʊɪŋ tə tʃeɪndʒ hər maɪnd/</span>
-                        <span class="pronunciation-text">(XÍI Ê-zãnt GÔU-in tã TCHÊINDJ rãr MÁIND)</span>
-                        <span class="translation-text">Ela não vai mudar de ideia.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        We <span class="example-word">aren't going to give up</span> on our goals.
-                        <button class="audio-btn" onclick="playAudio('We aren\'t going to give up on our goals.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wiː ɑːrnt ˈɡoʊɪŋ tə ɡɪv ʌp ɑːn aʊər ɡoʊlz/</span>
-                        <span class="pronunciation-text">(UÍI ÁRNT GÔU-in tã GUÊV ÂP ón áu-ãr GÔULZ)</span>
-                        <span class="translation-text">Nós não vamos desistir dos nossos objetivos.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        They <span class="example-word">aren't going to sell</span> their house this year.
-                        <button class="audio-btn" onclick="playAudio('They aren\'t going to sell their house this year.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðeɪ ɑːrnt ˈɡoʊɪŋ tə sel ðer haʊs ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(DHÊI ÁRNT GÔU-in tã SÉL dhér RÁUS DHÊS IÍR)</span>
-                        <span class="translation-text">Eles não vão vender a casa deles este ano.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        I <span class="example-word">am not going to forget</span> this important deadline.
-                        <button class="audio-btn" onclick="playAudio('I am not going to forget this important deadline.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/aɪ æm nɑːt ˈɡoʊɪŋ tə fərˈɡet ðɪs ɪmˈpɔːrtnt ˈdedlaɪn/</span>
-                        <span class="pronunciation-text">(ÁI ÉM NÓT GÔU-in tã fór-GUÉT DHÊS em-PÓR-tãnt DÉD-láin)</span>
-                        <span class="translation-text">Eu não vou esquecer este prazo importante.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        He <span class="example-word">isn't going to take</span> a long break from work.
-                        <button class="audio-btn" onclick="playAudio('He isn\'t going to take a long break from work.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/hiː ˈɪznt ˈɡoʊɪŋ tə teɪk ə lɔːŋ breɪk frəm wɜːrk/</span>
-                        <span class="pronunciation-text">(RÍI Ê-zãnt GÔU-in tã TÊIK ã LÓN BRÊIK frãm UÃRK)</span>
-                        <span class="translation-text">Ele não vai tirar uma longa pausa do trabalho.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        She <span class="example-word">isn't going to hire</span> a new assistant right now.
-                        <button class="audio-btn" onclick="playAudio('She isn\'t going to hire a new assistant right now.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ʃiː ˈɪznt ˈɡoʊɪŋ tə ˈhaɪər ə nuː əˈsɪstənt raɪt naʊ/</span>
-                        <span class="pronunciation-text">(XÍI Ê-zãnt GÔU-in tã RÁI-ãr ã NÚU ã-SÊS-tãnt RÁIT NÁU)</span>
-                        <span class="translation-text">Ela não vai contratar um novo assistente agora.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        We <span class="example-word">aren't going to discuss</span> that topic today.
-                        <button class="audio-btn" onclick="playAudio('We aren\'t going to discuss that topic today.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wiː ɑːrnt ˈɡoʊɪŋ tə dɪˈskʌs ðæt ˈtɑːpɪk təˈdeɪ/</span>
-                        <span class="pronunciation-text">(UÍI ÁRNT GÔU-in tã dĩ-SCÂS DHÉT TÓ-pêk tã-DÊI)</span>
-                        <span class="translation-text">Nós não vamos discutir aquele tópico hoje.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        They <span class="example-word">aren't going to finish</span> the project by Friday.
-                        <button class="audio-btn" onclick="playAudio('They aren\'t going to finish the project by Friday.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðeɪ ɑːrnt ˈɡoʊɪŋ tə ˈfɪnɪʃ ðə ˈprɑːdʒekt baɪ ˈfraɪdeɪ/</span>
-                        <span class="pronunciation-text">(DHÊI ÁRNT GÔU-in tã FÊ-nêsh dhã PRÓ-djekt bái FRÁI-dei)</span>
-                        <span class="translation-text">Eles não vão terminar o projeto até sexta-feira.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        The company <span class="example-word">isn't going to reduce</span> its prices.
-                        <button class="audio-btn" onclick="playAudio('The company isn\'t going to reduce its prices.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ðə ˈkʌmpəni ˈɪznt ˈɡoʊɪŋ tə rɪˈduːs ɪts ˈpraɪsɪz/</span>
-                        <span class="pronunciation-text">(dhã CÂM-pã-ni Ê-zãnt GÔU-in tã ri-DÚUS êts PRÁI-sêz)</span>
-                        <span class="translation-text">A empresa não vai reduzir seus preços.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        My team <span class="example-word">isn't going to participate</span> in the competition.
-                        <button class="audio-btn" onclick="playAudio('My team isn\'t going to participate in the competition.')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/maɪ tiːm ˈɪznt ˈɡoʊɪŋ tə pɑːrˈtɪsɪpeɪt ɪn ðə ˌkɑːmpəˈtɪʃn/</span>
-                        <span class="pronunciation-text">(MÁI TÍIM Ê-zãnt GÔU-in tã par-TÊ-sĩ-peit în dhã cóm-pã-TÊ-shãn)</span>
-                        <span class="translation-text">Minha equipe não vai participar da competição.</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+        <div class="vocab-grid">
+            <!-- Frase 1 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">I <span class="example-word">am not going to quit</span> my job.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm nɑːt ˈɡoʊɪŋ tə kwɪt maɪ dʒɑːb/</span></div>
+                <span class="vocab-phonetic-pt">(ÁI ÉM NÓT GÔU-in tã CUÊT mái DJÓB)</span>
+                <span class="vocab-pt">Eu não vou pedir demissão do meu emprego.</span>
+            </div><button class="audio-btn" onclick="playAudio('I am not going to quit my job.')">🔊</button></div>
 
-    <!-- Section 16.5 Interrogative -->
-    <section>
-        <h2>16.5 Frases Interrogativas ❓</h2>
-        <p><strong>Estrutura:</strong> Verbo "To Be" + Sujeito + going to + Verbo?</p>
+            <!-- Frase 2 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">You <span class="example-word">aren't going to postpone</span> studies.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/juː ɑːrnt ˈɡoʊɪŋ tə poʊstˈpoʊn ˈstʌdiz/</span></div>
+                <span class="vocab-phonetic-pt">(IÚU ÁRNT GÔU-in tã pôust-PÔUN STÂ-diiz)</span>
+                <span class="vocab-pt">Você não vai adiar os estudos.</span>
+            </div><button class="audio-btn" onclick="playAudio('You aren\'t going to postpone studies.')">🔊</button></div>
 
-        <table class="mobile-table">
-            <thead>
-                <tr>
-                    <th>Inglês</th>
-                    <th>Detalhes (Fonética & Tradução)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Am</span> I <span class="example-word">going to achieve</span> my goals this year?
-                        <button class="audio-btn" onclick="playAudio('Am I going to achieve my goals this year?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/æm aɪ ˈɡoʊɪŋ tu əˈtʃiːv maɪ ɡoʊlz ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(ÉM ÁI GÔU-in tu ã-TCHÍIV mái GÔULZ DHÊS IÍR?)</span>
-                        <span class="translation-text">Eu vou alcançar meus objetivos este ano?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Are</span> you <span class="example-word">going to apply</span> for that new job?
-                        <button class="audio-btn" onclick="playAudio('Are you going to apply for that new job?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɑːr juː ˈɡoʊɪŋ tu əˈplaɪ fər ðæt nuː dʒɑːb/</span>
-                        <span class="pronunciation-text">(ÁR IÚU GÔU-in tu ã-PLÁI fór DHÉT NÚU DJÓB?)</span>
-                        <span class="translation-text">Você vai se candidatar para aquele novo emprego?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Is</span> he <span class="example-word">going to start</span> his own company?
-                        <button class="audio-btn" onclick="playAudio('Is he going to start his own company?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪz hiː ˈɡoʊɪŋ tə stɑːrt hɪz oʊn ˈkʌmpəni/</span>
-                        <span class="pronunciation-text">(ÊZ RÍI GÔU-in tã STÁRT rêz ÔUN CÂM-pã-ni?)</span>
-                        <span class="translation-text">Ele vai abrir a própria empresa?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Is</span> she <span class="example-word">going to learn</span> to play a musical instrument?
-                        <button class="audio-btn" onclick="playAudio('Is she going to learn to play a musical instrument?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪz ʃiː ˈɡoʊɪŋ tə lɜːrn tə pleɪ ə ˈmjuːzɪkl ˈɪnstrəmənt/</span>
-                        <span class="pronunciation-text">(ÊZ XÍI GÔU-in tã LÃRN tã PLÊI ã MIÚ-zĩ-cõl ÊNS-trõ-mãnt?)</span>
-                        <span class="translation-text">Ela vai aprender a tocar um instrumento musical?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Is</span> it <span class="example-word">going to be</span> a difficult year for the business?
-                        <button class="audio-btn" onclick="playAudio('Is it going to be a difficult year for the business?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪz ɪt ˈɡoʊɪŋ tə biː ə ˈdɪfɪkəlt jɪr fər ðə ˈbɪznəs/</span>
-                        <span class="pronunciation-text">(ÊZ ÊT GÔU-in tã BÍI ã DÊ-fĩ-cõlt IÍR fór dhã BÊZ-nãs?)</span>
-                        <span class="translation-text">Vai ser um ano difícil para o negócio?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Are</span> we <span class="example-word">going to renovate</span> the office next month?
-                        <button class="audio-btn" onclick="playAudio('Are we going to renovate the office next month?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɑːr wiː ˈɡoʊɪŋ tə ˈrenəveɪt ði ˈɔːfɪs nekst mʌnθ/</span>
-                        <span class="pronunciation-text">(ÁR UÍI GÔU-in tã RÉ-nõ-veit dhí Ó-fês NÉKST MÂNTH?)</span>
-                        <span class="translation-text">Nós vamos reformar o escritório no próximo mês?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Are</span> they <span class="example-word">going to hire</span> more employees?
-                        <button class="audio-btn" onclick="playAudio('Are they going to hire more employees?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɑːr ðeɪ ˈɡoʊɪŋ tə ˈhaɪər mɔːr ɪmˈplɔɪiːz/</span>
-                        <span class="pronunciation-text">(ÁR DHÊI GÔU-in tã RÁI-ãr MÓR em-PLÓI-iiz?)</span>
-                        <span class="translation-text">Eles vão contratar mais funcionários?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        What <span class="example-word">are</span> you <span class="example-word">going to do</span> to improve your skills?
-                        <button class="audio-btn" onclick="playAudio('What are you going to do to improve your skills?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wʌt ɑːr juː ˈɡoʊɪŋ tə duː tu ɪmˈpruːv jɔːr skɪlz/</span>
-                        <span class="pronunciation-text">(UÓT ÁR IÚU GÔU-in tã DÚU tu em-PRÚUV iór SKÊLZ?)</span>
-                        <span class="translation-text">O que você vai fazer para melhorar suas habilidades?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        Where <span class="example-word">is</span> she <span class="example-word">going to travel</span> for her professional development?
-                        <button class="audio-btn" onclick="playAudio('Where is she going to travel for her professional development?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wer ɪz ʃiː ˈɡoʊɪŋ tə ˈtrævl fər hər prəˈfeʃənl dɪˈveləpmənt/</span>
-                        <span class="pronunciation-text">(UÉR ÊZ XÍI GÔU-in tã TRÉ-võl fór rãr prõ-FÉ-shõ-nõl dĩ-VÉ-lõp-mãnt?)</span>
-                        <span class="translation-text">Para onde ela vai viajar para seu desenvolvimento profissional?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        Why <span class="example-word">is</span> he <span class="example-word">going to change</span> his study routine?
-                        <button class="audio-btn" onclick="playAudio('Why is he going to change his study routine?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/waɪ ɪz hiː ˈɡoʊɪŋ tə tʃeɪndʒ hɪz ˈstʌdi ruːˈtiːn/</span>
-                        <span class="pronunciation-text">(UÁI ÊZ RÍI GÔU-in tã TCHÊINDJ rêz STÂ-di ru-TÍIN?)</span>
-                        <span class="translation-text">Por que ele vai mudar sua rotina de estudos?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        Who <span class="example-word">is going to lead</span> the new project?
-                        <button class="audio-btn" onclick="playAudio('Who is going to lead the new project?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/huː ɪz ˈɡoʊɪŋ tə liːd ðə nuː ˈprɑːdʒekt/</span>
-                        <span class="pronunciation-text">(RÚU ÊZ GÔU-in tã LÍID dhã NÚU PRÓ-djekt?)</span>
-                        <span class="translation-text">Quem vai liderar o novo projeto?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        When <span class="example-word">are</span> they <span class="example-word">going to announce</span> the new strategy?
-                        <button class="audio-btn" onclick="playAudio('When are they going to announce the new strategy?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wen ɑːr ðeɪ ˈɡoʊɪŋ tu əˈnaʊns ðə nuː ˈstrætədʒi/</span>
-                        <span class="pronunciation-text">(UÉN ÁR DHÊI GÔU-in tu ã-NÁUNS dhã NÚU STRÉ-tã-dji?)</span>
-                        <span class="translation-text">Quando eles vão anunciar a nova estratégia?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        How <span class="example-word">are</span> you <span class="example-word">going to manage</span> your time better?
-                        <button class="audio-btn" onclick="playAudio('How are you going to manage your time better?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/haʊ ɑːr juː ˈɡoʊɪŋ tə ˈmænɪdʒ jɔːr taɪm ˈbetər/</span>
-                        <span class="pronunciation-text">(RÁU ÁR IÚU GÔU-in tã MÉ-nêdj iór TÁIM BÉ-tãr?)</span>
-                        <span class="translation-text">Como você vai gerenciar melhor seu tempo?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Are</span> we <span class="example-word">going to meet</span> our sales targets this year?
-                        <button class="audio-btn" onclick="playAudio('Are we going to meet our sales targets this year?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɑːr wiː ˈɡoʊɪŋ tə miːt aʊər seɪlz ˈtɑːrɡɪts ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(ÁR UÍI GÔU-in tã MÍIT áu-ãr SÊILZ TÁR-guêts DHÊS IÍR?)</span>
-                        <span class="translation-text">Nós vamos atingir nossas metas de vendas este ano?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Is</span> he <span class="example-word">going to ask</span> for a raise?
-                        <button class="audio-btn" onclick="playAudio('Is he going to ask for a raise?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪz hiː ˈɡoʊɪŋ tu æsk fər ə reɪz/</span>
-                        <span class="pronunciation-text">(ÊZ RÍI GÔU-in tu ÉSK fór ã RÊIZ?)</span>
-                        <span class="translation-text">Ele vai pedir um aumento?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Is</span> she <span class="example-word">going to finish</span> her degree next semester?
-                        <button class="audio-btn" onclick="playAudio('Is she going to finish her degree next semester?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɪz ʃiː ˈɡoʊɪŋ tə ˈfɪnɪʃ hər dɪˈɡriː nekst səˈmestər/</span>
-                        <span class="pronunciation-text">(ÊZ XÍI GÔU-in tã FÊ-nêsh rãr dĩ-GRÍI NÉKST sã-MÉS-tãr?)</span>
-                        <span class="translation-text">Ela vai terminar a graduação no próximo semestre?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Are</span> they <span class="example-word">going to invest</span> in new technology?
-                        <button class="audio-btn" onclick="playAudio('Are they going to invest in new technology?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɑːr ðeɪ ˈɡoʊɪŋ tu ɪnˈvest ɪn nuː tekˈnɑːlədʒi/</span>
-                        <span class="pronunciation-text">(ÁR DHÊI GÔU-in tu în-VÉST în NÚU tek-NÓ-lã-dji?)</span>
-                        <span class="translation-text">Eles vão investir em nova tecnologia?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        What course <span class="example-word">are</span> you <span class="example-word">going to take</span> next?
-                        <button class="audio-btn" onclick="playAudio('What course are you going to take next?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/wʌt kɔːrs ɑːr juː ˈɡoʊɪŋ tə teɪk nekst/</span>
-                        <span class="pronunciation-text">(UÓT CÓRS ÁR IÚU GÔU-in tã TÊIK NÉKST?)</span>
-                        <span class="translation-text">Que curso você vai fazer em seguida?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        How many people <span class="example-word">are going to attend</span> the workshop?
-                        <button class="audio-btn" onclick="playAudio('How many people are going to attend the workshop?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/haʊ ˈmeni ˈpiːpl ɑːr ˈɡoʊɪŋ tu əˈtend ðə ˈwɜːrkʃɑːp/</span>
-                        <span class="pronunciation-text">(RÁU MÉ-ni PÍI-põl ÁR GÔU-in tu ã-TÉND dhã UÃRK-shóp?)</span>
-                        <span class="translation-text">Quantas pessoas vão participar do workshop?</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-english">
-                        <span class="example-word">Are</span> you <span class="example-word">going to paint</span> your house this year?
-                        <button class="audio-btn" onclick="playAudio('Are you going to paint your house this year?')">🔊</button>
-                    </td>
-                    <td class="col-details">
-                        <span class="ipa-text">/ɑːr juː ˈɡoʊɪŋ tə peɪnt jɔːr haʊs ðɪs jɪr/</span>
-                        <span class="pronunciation-text">(ÁR IÚU GÔU-in tã PÊINT iór RÁUS DHÊS IÍR?)</span>
-                        <span class="translation-text">Você vai pintar sua casa este ano?</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+            <!-- Frase 3 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">He <span class="example-word">isn't going to move</span> to another city.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/hiː ˈɪznt ˈɡoʊɪŋ tə muːv tu əˈnʌðər ˈsɪti/</span></div>
+                <span class="vocab-phonetic-pt">(RÍI Ê-zãnt GÔU-in tã MÚUV tu ã-NÂ-dhãr SÊ-ti)</span>
+                <span class="vocab-pt">Ele não vai se mudar para outra cidade.</span>
+            </div><button class="audio-btn" onclick="playAudio('He isn\'t going to move to another city.')">🔊</button></div>
 
-    <!-- Section 16.6 Will vs Going To -->
-    <section>
-        <h2>16.6 Decidindo Qual Usar: "Will" vs. "Going To" 🤔⚖️</h2>
-        <div class="card">
-            <p>Às vezes, a diferença entre "will" e "be going to" pode ser sutil, mas aqui estão as distinções principais:</p>
-            <ul style="padding-left: 20px;">
-                <li><strong>Will:</strong> Decisões tomadas <strong>no momento da fala</strong> (espontâneas) ou previsões baseadas em opinião.
-                    <div style="margin-left: 10px; font-style: italic; color: #555;">
-                        "I think I <strong>will buy</strong> a drink." (Decidi agora)
-                    </div>
-                </li>
-                <br>
-                <li><strong>Going To:</strong> Decisões tomadas <strong>antes</strong> (planos) ou previsões baseadas em <strong>evidências</strong>.
-                    <div style="margin-left: 10px; font-style: italic; color: #555;">
-                        "I <strong>am going to buy</strong> a new car next month." (Já planejei)
-                    </div>
-                </li>
-            </ul>
+            <!-- Frase 4 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">She <span class="example-word">isn't going to start</span> renovation.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ʃiː ˈɪznt ˈɡoʊɪŋ tə stɑːrt ˌrenəˈveɪʃn/</span></div>
+                <span class="vocab-phonetic-pt">(XÍI Ê-zãnt GÔU-in tã STÁRT ré-nõ-VÊI-shãn)</span>
+                <span class="vocab-pt">Ela não vai começar a reforma.</span>
+            </div><button class="audio-btn" onclick="playAudio('She isn\'t going to start renovation.')">🔊</button></div>
+
+            <!-- Frase 5 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">It <span class="example-word">isn't going to be</span> easy.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪt ˈɪznt ˈɡoʊɪŋ tə biː ˈiːzi/</span></div>
+                <span class="vocab-phonetic-pt">(ÊT Ê-zãnt GÔU-in tã BÍI ÍI-zi)</span>
+                <span class="vocab-pt">Não vai ser fácil.</span>
+            </div><button class="audio-btn" onclick="playAudio('It isn\'t going to be easy.')">🔊</button></div>
+
+            <!-- Frase 6 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">We <span class="example-word">aren't going to travel</span> this summer.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wiː ɑːrnt ˈɡoʊɪŋ tə ˈtrævl ðɪs ˈsʌmər/</span></div>
+                <span class="vocab-phonetic-pt">(UÍI ÁRNT GÔU-in tã TRÉ-võl DHÊS SÂ-mãr)</span>
+                <span class="vocab-pt">Nós não vamos viajar neste verão.</span>
+            </div><button class="audio-btn" onclick="playAudio('We aren\'t going to travel this summer.')">🔊</button></div>
+
+            <!-- Frase 7 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">They <span class="example-word">aren't going to buy</span> that car.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ðeɪ ɑːrnt ˈɡoʊɪŋ tə baɪ ðæt kɑːr/</span></div>
+                <span class="vocab-phonetic-pt">(DHÊI ÁRNT GÔU-in tã BÁI DHÉT CÁR)</span>
+                <span class="vocab-pt">Eles não vão comprar aquele carro.</span>
+            </div><button class="audio-btn" onclick="playAudio('They aren\'t going to buy that car.')">🔊</button></div>
+
+            <!-- Frase 8 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">I <span class="example-word">am not going to apply</span> for that position.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm nɑːt ˈɡoʊɪŋ tu əˈplaɪ/</span></div>
+                <span class="vocab-phonetic-pt">(ÁI ÉM NÓT GÔU-in tu ã-PLÁI)</span>
+                <span class="vocab-pt">Eu não vou me candidatar para aquela vaga.</span>
+            </div><button class="audio-btn" onclick="playAudio('I am not going to apply for that position.')">🔊</button></div>
+
+            <!-- Frase 9 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">You <span class="example-word">aren't going to miss</span> this opportunity.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/juː ɑːrnt ˈɡoʊɪŋ tə mɪs ðɪs ˌɑːpərˈtuːnəti/</span></div>
+                <span class="vocab-phonetic-pt">(IÚU ÁRNT GÔU-in tã MÊS DHÊS ó-pãr-TÚU-nã-ti)</span>
+                <span class="vocab-pt">Você não vai perder esta oportunidade.</span>
+            </div><button class="audio-btn" onclick="playAudio('You aren\'t going to miss this opportunity.')">🔊</button></div>
+
+            <!-- Frase 10 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">He <span class="example-word">isn't going to invest</span> in that company.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/hiː ˈɪznt ˈɡoʊɪŋ tu ɪnˈvest/</span></div>
+                <span class="vocab-phonetic-pt">(RÍI Ê-zãnt GÔU-in tu în-VÉST)</span>
+                <span class="vocab-pt">Ele não vai investir naquela empresa.</span>
+            </div><button class="audio-btn" onclick="playAudio('He isn\'t going to invest in that company.')">🔊</button></div>
+
+            <!-- Frase 11 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">She <span class="example-word">isn't going to change</span> her mind.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ʃiː ˈɪznt ˈɡoʊɪŋ tə tʃeɪndʒ hər maɪnd/</span></div>
+                <span class="vocab-phonetic-pt">(XÍI Ê-zãnt GÔU-in tã TCHÊINDJ rãr MÁIND)</span>
+                <span class="vocab-pt">Ela não vai mudar de ideia.</span>
+            </div><button class="audio-btn" onclick="playAudio('She isn\'t going to change her mind.')">🔊</button></div>
+
+            <!-- Frase 12 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">We <span class="example-word">aren't going to give up</span>.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wiː ɑːrnt ˈɡoʊɪŋ tə ɡɪv ʌp/</span></div>
+                <span class="vocab-phonetic-pt">(UÍI ÁRNT GÔU-in tã GUÊV ÂP)</span>
+                <span class="vocab-pt">Nós não vamos desistir.</span>
+            </div><button class="audio-btn" onclick="playAudio('We aren\'t going to give up.')">🔊</button></div>
+
+            <!-- Frase 13 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">They <span class="example-word">aren't going to sell</span> their house.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ðeɪ ɑːrnt ˈɡoʊɪŋ tə sel ðer haʊs/</span></div>
+                <span class="vocab-phonetic-pt">(DHÊI ÁRNT GÔU-in tã SÉL dhér RÁUS)</span>
+                <span class="vocab-pt">Eles não vão vender a casa deles.</span>
+            </div><button class="audio-btn" onclick="playAudio('They aren\'t going to sell their house.')">🔊</button></div>
+
+            <!-- Frase 14 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">I <span class="example-word">am not going to forget</span> the deadline.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/aɪ æm nɑːt ˈɡoʊɪŋ tə fərˈɡet ðə ˈdedlaɪn/</span></div>
+                <span class="vocab-phonetic-pt">(ÁI ÉM NÓT GÔU-in tã fór-GUÉT dhã DÉD-láin)</span>
+                <span class="vocab-pt">Eu não vou esquecer o prazo.</span>
+            </div><button class="audio-btn" onclick="playAudio('I am not going to forget the deadline.')">🔊</button></div>
+
+            <!-- Frase 15 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">He <span class="example-word">isn't going to take</span> a long break.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/hiː ˈɪznt ˈɡoʊɪŋ tə teɪk ə lɔːŋ breɪk/</span></div>
+                <span class="vocab-phonetic-pt">(RÍI Ê-zãnt GÔU-in tã TÊIK ã LÓN BRÊIK)</span>
+                <span class="vocab-pt">Ele não vai tirar uma longa pausa.</span>
+            </div><button class="audio-btn" onclick="playAudio('He isn\'t going to take a long break.')">🔊</button></div>
+
+            <!-- Frase 16 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">She <span class="example-word">isn't going to hire</span> an assistant.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ʃiː ˈɪznt ˈɡoʊɪŋ tə ˈhaɪər ən əˈsɪstənt/</span></div>
+                <span class="vocab-phonetic-pt">(XÍI Ê-zãnt GÔU-in tã RÁI-ãr ãn ã-SÊS-tãnt)</span>
+                <span class="vocab-pt">Ela não vai contratar um assistente.</span>
+            </div><button class="audio-btn" onclick="playAudio('She isn\'t going to hire an assistant.')">🔊</button></div>
+
+            <!-- Frase 17 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">We <span class="example-word">aren't going to discuss</span> that today.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wiː ɑːrnt ˈɡoʊɪŋ tə dɪˈskʌs ðæt təˈdeɪ/</span></div>
+                <span class="vocab-phonetic-pt">(UÍI ÁRNT GÔU-in tã dĩ-SCÂS DHÉT tã-DÊI)</span>
+                <span class="vocab-pt">Nós não vamos discutir isso hoje.</span>
+            </div><button class="audio-btn" onclick="playAudio('We aren\'t going to discuss that today.')">🔊</button></div>
+
+            <!-- Frase 18 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">The company <span class="example-word">isn't going to reduce</span> prices.</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ðə ˈkʌmpəni ˈɪznt ˈɡoʊɪŋ tə rɪˈduːs ˈpraɪsɪz/</span></div>
+                <span class="vocab-phonetic-pt">(dhã CÂM-pã-ni Ê-zãnt GÔU-in tã ri-DÚUS PRÁI-sêz)</span>
+                <span class="vocab-pt">A empresa não vai reduzir preços.</span>
+            </div><button class="audio-btn" onclick="playAudio('The company isn\'t going to reduce prices.')">🔊</button></div>
         </div>
     </section>
 
-    <!-- Vocabulary Section -->
-    <section>
-        <h2>Vocabulário: Metas e Planos Futuros 📚</h2>
-        <div class="card">
-            <!-- Item 1 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Goal</span> / <span class="example-word">Objective</span> <button class="audio-btn" onclick="playAudio('Goal. Objective.')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/ɡoʊl/ / /əbˈdʒektɪv/</span>
-                    <span class="pronunciation-text">(GÔUL) / (õb-DJÉK-têv)</span>
-                    <span class="translation-text">Meta / Objetivo</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: My main goal is to learn English.</em> <button class="audio-btn" onclick="playAudio('My main goal is to learn English.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Learn</span> <button class="audio-btn" onclick="playAudio('Learn')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/lɜːrn/</span>
-                    <span class="pronunciation-text">(LÃRN)</span>
-                    <span class="translation-text">Aprender</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: She is going to learn how to code.</em> <button class="audio-btn" onclick="playAudio('She is going to learn how to code.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Change</span> / <span class="example-word">Move</span> <button class="audio-btn" onclick="playAudio('Change. Move.')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/tʃeɪndʒ/ / /muːv/</span>
-                    <span class="pronunciation-text">(TCHÊINDJ) / (MÚUV)</span>
-                    <span class="translation-text">Mudar (de emprego, casa)</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: Are you going to change jobs?</em> <button class="audio-btn" onclick="playAudio('Are you going to change jobs?')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 4 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Renovate</span> <button class="audio-btn" onclick="playAudio('Renovate')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/ˈrenəveɪt/</span>
-                    <span class="pronunciation-text">(RÉ-nõ-veit)</span>
-                    <span class="translation-text">Reformar / Renovar</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: We are going to renovate the bathroom.</em> <button class="audio-btn" onclick="playAudio('We are going to renovate the bathroom.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Start</span> / <span class="example-word">Begin</span> <button class="audio-btn" onclick="playAudio('Start. Begin.')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/stɑːrt/ / /bɪˈɡɪn/</span>
-                    <span class="pronunciation-text">(STÁRT) / (bi-GUÊN)</span>
-                    <span class="translation-text">Começar / Iniciar</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: When are you going to start the new course?</em> <button class="audio-btn" onclick="playAudio('When are you going to start the new course?')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 6 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Improve</span> <button class="audio-btn" onclick="playAudio('Improve')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/ɪmˈpruːv/</span>
-                    <span class="pronunciation-text">(em-PRÚUV)</span>
-                    <span class="translation-text">Melhorar / Aprimorar</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: I'm going to improve my English speaking skills.</em> <button class="audio-btn" onclick="playAudio('I\'m going to improve my English speaking skills.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 7 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Save money</span> <button class="audio-btn" onclick="playAudio('Save money')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/seɪv ˈmʌni/</span>
-                    <span class="pronunciation-text">(SÊIV MÂ-ni)</span>
-                    <span class="translation-text">Economizar (dinheiro)</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: They are going to save money for a new house.</em> <button class="audio-btn" onclick="playAudio('They are going to save money for a new house.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 8 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Travel</span> <button class="audio-btn" onclick="playAudio('Travel')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/ˈtrævl/</span>
-                    <span class="pronunciation-text">(TRÉ-võl)</span>
-                    <span class="translation-text">Viajar</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: Where are you going to travel next?</em> <button class="audio-btn" onclick="playAudio('Where are you going to travel next?')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 9 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Apply for</span> <button class="audio-btn" onclick="playAudio('Apply for')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/əˈplaɪ fɔːr/</span>
-                    <span class="pronunciation-text">(ã-PLÁI fór)</span>
-                    <span class="translation-text">Candidatar-se (a uma vaga)</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: He is going to apply for a new position.</em> <button class="audio-btn" onclick="playAudio('He is going to apply for a new position.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 10 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Promotion</span> <button class="audio-btn" onclick="playAudio('Promotion')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/prəˈmoʊʃn/</span>
-                    <span class="pronunciation-text">(prã-MÔU-shãn)</span>
-                    <span class="translation-text">Promoção (no trabalho)</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: She is going to ask for a promotion.</em> <button class="audio-btn" onclick="playAudio('She is going to ask for a promotion.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 11 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Skill</span> <button class="audio-btn" onclick="playAudio('Skill')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/skɪl/</span>
-                    <span class="pronunciation-text">(SKÊL)</span>
-                    <span class="translation-text">Habilidade</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: What new skill are you going to learn?</em> <button class="audio-btn" onclick="playAudio('What new skill are you going to learn?')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 12 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Career</span> <button class="audio-btn" onclick="playAudio('Career')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/kəˈrɪr/</span>
-                    <span class="pronunciation-text">(cã-RÍIR)</span>
-                    <span class="translation-text">Carreira</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: He is going to make a change in his career.</em> <button class="audio-btn" onclick="playAudio('He is going to make a change in his career.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 13 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Next year</span> <button class="audio-btn" onclick="playAudio('Next year')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/nekst jɪr/</span>
-                    <span class="pronunciation-text">(NÉKST IÍR)</span>
-                    <span class="translation-text">Próximo ano</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: What are your goals for next year?</em> <button class="audio-btn" onclick="playAudio('What are your goals for next year?')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 14 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Next month</span> <button class="audio-btn" onclick="playAudio('Next month')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/nekst mʌnθ/</span>
-                    <span class="pronunciation-text">(NÉKST MÂNTH)</span>
-                    <span class="translation-text">Próximo mês</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: The project is going to start next month.</em> <button class="audio-btn" onclick="playAudio('The project is going to start next month.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 15 -->
-            <div class="vocab-item">
-                <div class="vocab-word">
-                    <span class="example-word">Soon</span> <button class="audio-btn" onclick="playAudio('Soon')">🔊</button>
-                </div>
-                <div class="vocab-details">
-                    <span class="ipa-text">/suːn/</span>
-                    <span class="pronunciation-text">(SÚUN)</span>
-                    <span class="translation-text">Em breve</span>
-                    <div style="margin-top:8px;">
-                        <em>Ex: They are going to announce the results soon.</em> <button class="audio-btn" onclick="playAudio('They are going to announce the results soon.')">🔊</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Extra Task -->
-    <div class="tarefa-extra">
-        <h4>Tarefa Extra: Reading and Comprehension 🧠</h4>
-        <h4>My Plans for Next Year</h4>
-        <p>
-            Next year is going to be a very important year for me. I have spent a lot of time thinking about my future, and I have made some concrete plans. First, I am going to change my career. I have worked in marketing for five years, but I am not going to continue on this path. It's not that I dislike it, but I discovered a new passion: web development. So, my main goal is to become a software developer. I know it's not going to be easy, but I am very motivated.
-        </p>
-        <p>
-            To achieve this, I am going to enroll in an intensive coding bootcamp. The course starts in January. It's a full-time program, so I am going to quit my current job in December. It's a big step, but I've saved some money, and I am prepared for the challenge. My family is very supportive. They know this is important to me. My sister, who is a designer, said, "Look at you! You are going to be so successful. I can see it." Her confidence in me is a great source of strength.
-        </p>
-        <p>
-            Besides my professional goals, I also have some personal plans. I am going to adopt a dog from the local shelter. I live alone, and I think a companion is going to bring a lot of joy to my life. I am also going to start a new hobby. I am not going to choose something related to computers. I think I am going to learn how to play the guitar. I've always wanted to play a musical instrument. I am not going to become a rock star, of course, but it's a creative outlet I'm looking forward to. It's going to be a busy year, full of changes and new beginnings, and I am genuinely excited about what the future holds.
-        </p>
-
-        <div style="margin-top: 20px;">
-            <strong>Quiz:</strong> Based on the text, what is the primary reason the narrator is changing careers?
-        </div>
-        <ul class="quiz-options">
-            <li>A) They were fired from their marketing job.</li>
-            <li>B) They want to earn a lot more money as a developer.</li>
-            <li>C) They discovered a new passion for web development.</li>
-            <li>D) Their family is forcing them to find a new profession.</li>
-            <li>E) They think learning to code is going to be very easy.</li>
-        </ul>
+    <section id="going-to-interrogative">
+        <h3>16.5 Perguntando Sobre Intenções ❔</h3>
+        <p>Inverta o verbo To Be: <strong>Am/Is/Are + Sujeito + going to...?</strong></p>
         
-        <details class="gabarito">
-            <summary>Ver Gabarito do Quiz</summary>
-            <p><strong>Resposta Correta:</strong> C</p>
-        </details>
-    </div>
+        <div class="vocab-grid">
+            <!-- Interrogativa 1 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Am</span> I <span class="example-word">going to achieve</span> my goals?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/æm aɪ ˈɡoʊɪŋ tu əˈtʃiːv maɪ ɡoʊlz/</span></div>
+                <span class="vocab-phonetic-pt">(ÉM ÁI GÔU-in tu ã-TCHÍIV mái GÔULZ?)</span>
+                <span class="vocab-pt">Eu vou alcançar meus objetivos?</span>
+            </div><button class="audio-btn" onclick="playAudio('Am I going to achieve my goals?')">🔊</button></div>
 
-    <!-- Continue Learning -->
-    <section>
-        <h3>Como Continuar Aprendendo? 🚀</h3>
-        <div class="nota-gramatical" style="border-left-color: #27ae60; background-color: #e6f7ef;">
-            <h4 style="color:#27ae60;">Dicas para Dominar o Futuro com "Going To":</h4>
-            <ul class="exercise-list" style="list-style-type: disc;">
-                <li><strong>Defina Suas Metas:</strong> Pense em 3 metas pessoais e 3 profissionais para o próximo ano. Escreva frases usando "I am going to...".</li>
-                <li><strong>Converse Sobre Planos:</strong> Pergunte a amigos ou familiares sobre os planos deles para o fim de semana, férias ou futuro em geral usando "Are you going to...?" ou "What are you going to...?".</li>
-                <li><strong>Observe Evidências:</strong> Durante o dia, se você vir algo que sugere uma ação futura (ex: nuvens escuras), pense: "It is going to rain."</li>
-                <li><strong>Contraste com "Will":</strong> Crie situações onde você usaria "will" (decisão espontânea) e outras onde usaria "be going to" (plano).</li>
-                <li><strong>Use "Gonna" na Fala (Informal):</strong> Se estiver praticando conversação, tente usar "gonna" para soar mais natural, mas lembre-se que é informal.</li>
-            </ul>
+            <!-- Interrogativa 2 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Are</span> you <span class="example-word">going to apply</span> for that job?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɑːr juː ˈɡoʊɪŋ tu əˈplaɪ fər ðæt dʒɑːb/</span></div>
+                <span class="vocab-phonetic-pt">(ÁR IÚU GÔU-in tu ã-PLÁI fór DHÉT DJÓB?)</span>
+                <span class="vocab-pt">Você vai se candidatar para aquele emprego?</span>
+            </div><button class="audio-btn" onclick="playAudio('Are you going to apply for that job?')">🔊</button></div>
+
+            <!-- Interrogativa 3 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Is</span> he <span class="example-word">going to start</span> his company?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪz hiː ˈɡoʊɪŋ tə stɑːrt hɪz ˈkʌmpəni/</span></div>
+                <span class="vocab-phonetic-pt">(ÊZ RÍI GÔU-in tã STÁRT rêz CÂM-pã-ni?)</span>
+                <span class="vocab-pt">Ele vai abrir a empresa dele?</span>
+            </div><button class="audio-btn" onclick="playAudio('Is he going to start his company?')">🔊</button></div>
+
+            <!-- Interrogativa 4 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Is</span> she <span class="example-word">going to learn</span> music?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪz ʃiː ˈɡoʊɪŋ tə lɜːrn ˈmjuːzɪk/</span></div>
+                <span class="vocab-phonetic-pt">(ÊZ XÍI GÔU-in tã LÃRN MIÚ-zêk?)</span>
+                <span class="vocab-pt">Ela vai aprender música?</span>
+            </div><button class="audio-btn" onclick="playAudio('Is she going to learn music?')">🔊</button></div>
+
+            <!-- Interrogativa 5 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Is</span> it <span class="example-word">going to be</span> difficult?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪz ɪt ˈɡoʊɪŋ tə biː ˈdɪfɪkəlt/</span></div>
+                <span class="vocab-phonetic-pt">(ÊZ ÊT GÔU-in tã BÍI DÊ-fĩ-cõlt?)</span>
+                <span class="vocab-pt">Vai ser difícil?</span>
+            </div><button class="audio-btn" onclick="playAudio('Is it going to be difficult?')">🔊</button></div>
+
+            <!-- Interrogativa 6 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Are</span> we <span class="example-word">going to renovate</span> the office?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɑːr wiː ˈɡoʊɪŋ tə ˈrenəveɪt ði ˈɔːfɪs/</span></div>
+                <span class="vocab-phonetic-pt">(ÁR UÍI GÔU-in tã RÉ-nõ-veit dhí Ó-fês?)</span>
+                <span class="vocab-pt">Nós vamos reformar o escritório?</span>
+            </div><button class="audio-btn" onclick="playAudio('Are we going to renovate the office?')">🔊</button></div>
+
+            <!-- Interrogativa 7 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Are</span> they <span class="example-word">going to hire</span> more people?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɑːr ðeɪ ˈɡoʊɪŋ tə ˈhaɪər mɔːr ˈpiːpl/</span></div>
+                <span class="vocab-phonetic-pt">(ÁR DHÊI GÔU-in tã RÁI-ãr MÓR PÍI-põl?)</span>
+                <span class="vocab-pt">Eles vão contratar mais pessoas?</span>
+            </div><button class="audio-btn" onclick="playAudio('Are they going to hire more people?')">🔊</button></div>
+
+            <!-- Interrogativa 8 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">What <span class="example-word">are</span> you <span class="example-word">going to do</span>?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wʌt ɑːr juː ˈɡoʊɪŋ tə duː/</span></div>
+                <span class="vocab-phonetic-pt">(UÓT ÁR IÚU GÔU-in tã DÚU?)</span>
+                <span class="vocab-pt">O que você vai fazer?</span>
+            </div><button class="audio-btn" onclick="playAudio('What are you going to do?')">🔊</button></div>
+
+            <!-- Interrogativa 9 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Where <span class="example-word">is</span> she <span class="example-word">going to travel</span>?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wer ɪz ʃiː ˈɡoʊɪŋ tə ˈtrævl/</span></div>
+                <span class="vocab-phonetic-pt">(UÉR ÊZ XÍI GÔU-in tã TRÉ-võl?)</span>
+                <span class="vocab-pt">Para onde ela vai viajar?</span>
+            </div><button class="audio-btn" onclick="playAudio('Where is she going to travel?')">🔊</button></div>
+
+            <!-- Interrogativa 10 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Why <span class="example-word">is</span> he <span class="example-word">going to change</span> routine?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/waɪ ɪz hiː ˈɡoʊɪŋ tə tʃeɪndʒ ruːˈtiːn/</span></div>
+                <span class="vocab-phonetic-pt">(UÁI ÊZ RÍI GÔU-in tã TCHÊINDJ ru-TÍIN?)</span>
+                <span class="vocab-pt">Por que ele vai mudar a rotina?</span>
+            </div><button class="audio-btn" onclick="playAudio('Why is he going to change routine?')">🔊</button></div>
+
+            <!-- Interrogativa 11 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Who <span class="example-word">is going to lead</span> the project?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/huː ɪz ˈɡoʊɪŋ tə liːd ðə ˈprɑːdʒekt/</span></div>
+                <span class="vocab-phonetic-pt">(RÚU ÊZ GÔU-in tã LÍID dhã PRÓ-djekt?)</span>
+                <span class="vocab-pt">Quem vai liderar o projeto?</span>
+            </div><button class="audio-btn" onclick="playAudio('Who is going to lead the project?')">🔊</button></div>
+
+            <!-- Interrogativa 12 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">When <span class="example-word">are</span> they <span class="example-word">going to announce</span> it?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wen ɑːr ðeɪ ˈɡoʊɪŋ tu əˈnaʊns ɪt/</span></div>
+                <span class="vocab-phonetic-pt">(UÉN ÁR DHÊI GÔU-in tu ã-NÁUNS ÊT?)</span>
+                <span class="vocab-pt">Quando eles vão anunciar?</span>
+            </div><button class="audio-btn" onclick="playAudio('When are they going to announce it?')">🔊</button></div>
+
+            <!-- Interrogativa 13 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">How <span class="example-word">are</span> you <span class="example-word">going to manage</span> time?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/haʊ ɑːr juː ˈɡoʊɪŋ tə ˈmænɪdʒ taɪm/</span></div>
+                <span class="vocab-phonetic-pt">(RÁU ÁR IÚU GÔU-in tã MÉ-nêdj TÁIM?)</span>
+                <span class="vocab-pt">Como você vai gerenciar o tempo?</span>
+            </div><button class="audio-btn" onclick="playAudio('How are you going to manage time?')">🔊</button></div>
+
+            <!-- Interrogativa 14 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Are</span> we <span class="example-word">going to meet</span> targets?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɑːr wiː ˈɡoʊɪŋ tə miːt ˈtɑːrɡɪts/</span></div>
+                <span class="vocab-phonetic-pt">(ÁR UÍI GÔU-in tã MÍIT TÁR-guêts?)</span>
+                <span class="vocab-pt">Nós vamos atingir as metas?</span>
+            </div><button class="audio-btn" onclick="playAudio('Are we going to meet targets?')">🔊</button></div>
+
+            <!-- Interrogativa 15 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Is</span> he <span class="example-word">going to ask</span> for a raise?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪz hiː ˈɡoʊɪŋ tu æsk fər ə reɪz/</span></div>
+                <span class="vocab-phonetic-pt">(ÊZ RÍI GÔU-in tu ÉSK fór ã RÊIZ?)</span>
+                <span class="vocab-pt">Ele vai pedir um aumento?</span>
+            </div><button class="audio-btn" onclick="playAudio('Is he going to ask for a raise?')">🔊</button></div>
+
+            <!-- Interrogativa 16 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Is</span> she <span class="example-word">going to finish</span> her degree?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪz ʃiː ˈɡoʊɪŋ tə ˈfɪnɪʃ hər dɪˈɡriː/</span></div>
+                <span class="vocab-phonetic-pt">(ÊZ XÍI GÔU-in tã FÊ-nêsh rãr dĩ-GRÍI?)</span>
+                <span class="vocab-pt">Ela vai terminar a graduação?</span>
+            </div><button class="audio-btn" onclick="playAudio('Is she going to finish her degree?')">🔊</button></div>
+
+             <!-- Interrogativa 17 -->
+             <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Are</span> they <span class="example-word">going to invest</span>?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɑːr ðeɪ ˈɡoʊɪŋ tu ɪnˈvest/</span></div>
+                <span class="vocab-phonetic-pt">(ÁR DHÊI GÔU-in tu în-VÉST?)</span>
+                <span class="vocab-pt">Eles vão investir?</span>
+            </div><button class="audio-btn" onclick="playAudio('Are they going to invest?')">🔊</button></div>
+
+             <!-- Interrogativa 18 -->
+             <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">What course <span class="example-word">are</span> you <span class="example-word">going to take</span>?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/wʌt kɔːrs ɑːr juː ˈɡoʊɪŋ tə teɪk/</span></div>
+                <span class="vocab-phonetic-pt">(UÓT CÓRS ÁR IÚU GÔU-in tã TÊIK?)</span>
+                <span class="vocab-pt">Que curso você vai fazer?</span>
+            </div><button class="audio-btn" onclick="playAudio('What course are you going to take?')">🔊</button></div>
+
+             <!-- Interrogativa 19 -->
+             <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">How many people <span class="example-word">are going to attend</span>?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/haʊ ˈmeni ˈpiːpl ɑːr ˈɡoʊɪŋ tu əˈtend/</span></div>
+                <span class="vocab-phonetic-pt">(RÁU MÉ-ni PÍI-põl ÁR GÔU-in tu ã-TÉND?)</span>
+                <span class="vocab-pt">Quantas pessoas vão participar?</span>
+            </div><button class="audio-btn" onclick="playAudio('How many people are going to attend?')">🔊</button></div>
+
+             <!-- Interrogativa 20 -->
+             <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en"><span class="example-word">Are</span> you <span class="example-word">going to paint</span> your house?</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɑːr juː ˈɡoʊɪŋ tə peɪnt jɔːr haʊs/</span></div>
+                <span class="vocab-phonetic-pt">(ÁR IÚU GÔU-in tã PÊINT iór RÁUS?)</span>
+                <span class="vocab-pt">Você vai pintar sua casa?</span>
+            </div><button class="audio-btn" onclick="playAudio('Are you going to paint your house?')">🔊</button></div>
         </div>
     </section>
 
-    <!-- Exercises -->
-    <section>
-        <h3>Exercícios Práticos 📝</h3>
-        <div class="secao-exercicios card">
-            <h4>Parte 1: Complete as Frases com "Be Going To"</h4>
-            <p>Use a forma correta de "be going to" + o verbo entre parênteses.</p>
-            <ol class="exercise-list">
-                <li>I <span class="fill-in-blank">__________</span> (start) a new course next month.</li>
-                <li>She <span class="fill-in-blank">__________</span> (travel) to Spain for her vacation.</li>
-                <li>They <span class="fill-in-blank">__________</span> (not / buy) a new car this year.</li>
-                <li>What <span class="fill-in-blank">__________</span> (you / do) after work today?</li>
-                <li>He <span class="fill-in-blank">__________</span> (look) for a new apartment.</li>
-                <li>We <span class="fill-in-blank">__________</span> (not / watch) that movie tonight.</li>
-                <li><span class="fill-in-blank">__________</span> (it / rain) later? The sky is very dark.</li>
-                <li>My parents <span class="fill-in-blank">__________</span> (visit) us next weekend.</li>
+    <section id="will-vs-going-to">
+        <h3>16.6 Decidindo Qual Usar: "Will" vs. "Going To" 🤔⚖️</h3>
+        <p>A diferença principal: <strong>Will</strong> (espontâneo) vs <strong>Going To</strong> (planejado).</p>
+        
+        <div class="grammar-table-wrapper">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Future with WILL</th>
+                        <th>Future with BE GOING TO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Principal Uso</strong></td>
+                        <td>Decisões espontâneas, promessas.</td>
+                        <td>Planos pré-estabelecidos, intenções.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Decisão</strong></td>
+                        <td>No momento da fala.</td>
+                        <td>Antes do momento da fala.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Previsão</strong></td>
+                        <td>Opinião (I think...).</td>
+                        <td>Evidência visual (Look at...).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="nota-dica">
+            <h4>Dica Rápida 💡</h4>
+            <p>Se você já pensou sobre isso antes: <strong>"be going to"</strong>.</p>
+            <p>Se você decidiu agora: <strong>"will"</strong>.</p>
+        </div>
+    </section>
+
+    <section id="vocabulario">
+        <h3>Vocabulário da Aula: Metas e Planos 📚</h3>
+        <div class="vocab-grid">
+            <!-- Vocab 1 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Goal / Objective</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɡoʊl/ - /əbˈdʒektɪv/</span></div>
+                <span class="vocab-phonetic-pt">(GÔUL) / (õb-DJÉK-têv)</span>
+                <span class="vocab-pt">Meta / Objetivo. <br>Ex: My goal is to learn English.</span>
+            </div><button class="audio-btn" onclick="playAudio('Goal. Objective. My goal is to learn English.')">🔊</button></div>
+
+            <!-- Vocab 2 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Learn</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/lɜːrn/</span></div>
+                <span class="vocab-phonetic-pt">(LÃRN)</span>
+                <span class="vocab-pt">Aprender. <br>Ex: She is going to learn to code.</span>
+            </div><button class="audio-btn" onclick="playAudio('Learn. She is going to learn to code.')">🔊</button></div>
+
+            <!-- Vocab 3 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Change / Move</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/tʃeɪndʒ/ - /muːv/</span></div>
+                <span class="vocab-phonetic-pt">(TCHÊINDJ) / (MÚUV)</span>
+                <span class="vocab-pt">Mudar. <br>Ex: Are you going to change jobs?</span>
+            </div><button class="audio-btn" onclick="playAudio('Change. Move. Are you going to change jobs?')">🔊</button></div>
+
+            <!-- Vocab 4 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Renovation / Renovate</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ˌrenəˈveɪʃn/</span></div>
+                <span class="vocab-phonetic-pt">(ré-nõ-VÊI-shãn)</span>
+                <span class="vocab-pt">Reforma / Reformar. <br>Ex: We are going to renovate.</span>
+            </div><button class="audio-btn" onclick="playAudio('Renovation. Renovate. We are going to renovate.')">🔊</button></div>
+
+            <!-- Vocab 5 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Start / Begin</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/stɑːrt/ - /bɪˈɡɪn/</span></div>
+                <span class="vocab-phonetic-pt">(STÁRT) / (bi-GUÊN)</span>
+                <span class="vocab-pt">Começar. <br>Ex: Start the new course.</span>
+            </div><button class="audio-btn" onclick="playAudio('Start. Begin. Start the new course.')">🔊</button></div>
+
+            <!-- Vocab 6 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Improve</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ɪmˈpruːv/</span></div>
+                <span class="vocab-phonetic-pt">(em-PRÚUV)</span>
+                <span class="vocab-pt">Melhorar. <br>Ex: Improve my English.</span>
+            </div><button class="audio-btn" onclick="playAudio('Improve. Improve my English.')">🔊</button></div>
+
+            <!-- Vocab 7 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Save money</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/seɪv ˈmʌni/</span></div>
+                <span class="vocab-phonetic-pt">(SÊIV MÂ-ni)</span>
+                <span class="vocab-pt">Economizar. <br>Ex: Save money for a house.</span>
+            </div><button class="audio-btn" onclick="playAudio('Save money. Save money for a house.')">🔊</button></div>
+
+            <!-- Vocab 8 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Travel</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/ˈtrævl/</span></div>
+                <span class="vocab-phonetic-pt">(TRÉ-võl)</span>
+                <span class="vocab-pt">Viajar. <br>Ex: Where are you going to travel?</span>
+            </div><button class="audio-btn" onclick="playAudio('Travel. Where are you going to travel?')">🔊</button></div>
+
+            <!-- Vocab 9 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Apply for</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/əˈplaɪ fɔːr/</span></div>
+                <span class="vocab-phonetic-pt">(ã-PLÁI fór)</span>
+                <span class="vocab-pt">Candidatar-se. <br>Ex: Apply for a position.</span>
+            </div><button class="audio-btn" onclick="playAudio('Apply for. Apply for a position.')">🔊</button></div>
+
+            <!-- Vocab 10 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Promotion</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/prəˈmoʊʃn/</span></div>
+                <span class="vocab-phonetic-pt">(prã-MÔU-shãn)</span>
+                <span class="vocab-pt">Promoção. <br>Ex: Ask for a promotion.</span>
+            </div><button class="audio-btn" onclick="playAudio('Promotion. Ask for a promotion.')">🔊</button></div>
+
+            <!-- Vocab 11 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Skill</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/skɪl/</span></div>
+                <span class="vocab-phonetic-pt">(SKÊL)</span>
+                <span class="vocab-pt">Habilidade. <br>Ex: What new skill?</span>
+            </div><button class="audio-btn" onclick="playAudio('Skill. What new skill?')">🔊</button></div>
+
+            <!-- Vocab 12 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Career</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/kəˈrɪr/</span></div>
+                <span class="vocab-phonetic-pt">(cã-RÍIR)</span>
+                <span class="vocab-pt">Carreira. <br>Ex: Change in his career.</span>
+            </div><button class="audio-btn" onclick="playAudio('Career. Change in his career.')">🔊</button></div>
+
+            <!-- Vocab 13 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Next year</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/nekst jɪr/</span></div>
+                <span class="vocab-phonetic-pt">(NÉKST IÍR)</span>
+                <span class="vocab-pt">Próximo ano. <br>Ex: Goals for next year?</span>
+            </div><button class="audio-btn" onclick="playAudio('Next year. Goals for next year?')">🔊</button></div>
+
+            <!-- Vocab 14 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Next month</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/nekst mʌnθ/</span></div>
+                <span class="vocab-phonetic-pt">(NÉKST MÂNTH)</span>
+                <span class="vocab-pt">Próximo mês. <br>Ex: Start next month.</span>
+            </div><button class="audio-btn" onclick="playAudio('Next month. Start next month.')">🔊</button></div>
+
+            <!-- Vocab 15 -->
+            <div class="vocab-item"><div class="vocab-content">
+                <span class="vocab-en">Soon</span>
+                <div class="vocab-ipa-block"><span class="vocab-ipa">/suːn/</span></div>
+                <span class="vocab-phonetic-pt">(SÚUN)</span>
+                <span class="vocab-pt">Em breve. <br>Ex: Announce results soon.</span>
+            </div><button class="audio-btn" onclick="playAudio('Soon. Announce results soon.')">🔊</button></div>
+        </div>
+    </section>
+
+    <section id="tarefa-extra">
+        <div class="tarefa-extra">
+            <h3>Tarefa Extra: Reading 📖</h3>
+            <h4>My Plans for Next Year</h4>
+            <p>Next year is going to be a very important year for me. I have spent a lot of time thinking about my future, and I have made some concrete plans. First, I am going to change my career. I have worked in marketing for five years, but I am not going to continue on this path. It's not that I dislike it, but I discovered a new passion: web development. So, my main goal is to become a software developer. I know it's not going to be easy, but I am very motivated.</p>
+            <p>To achieve this, I am going to enroll in an intensive coding bootcamp. The course starts in January. It's a full-time program, so I am going to quit my current job in December. It's a big step, but I've saved some money, and I am prepared for the challenge. My family is very supportive. They know this is important to me. My sister, who is a designer, said, "Look at you! You are going to be so successful. I can see it." Her confidence in me is a great source of strength.</p>
+            <p>Besides my professional goals, I also have some personal plans. I am going to adopt a dog from the local shelter. I live alone, and I think a companion is going to bring a lot of joy to my life. I am also going to start a new hobby. I am not going to choose something related to computers. I think I am going to learn how to play the guitar. I've always wanted to play a musical instrument. I am not going to become a rock star, of course, but it's a creative outlet I'm looking forward to. It's going to be a busy year, full of changes and new beginnings, and I am genuinely excited about what the future holds.</p>
+            <button class="nav-btn" onclick="playAudio(document.querySelector('.tarefa-extra p').innerText + document.querySelector('.tarefa-extra p:nth-of-type(2)').innerText)">🔊 Ouvir Texto (Parte 1)</button>
+
+            <h4 style="margin-top: 25px;">Quiz</h4>
+            <p>Based on the text, what is the primary reason the narrator is changing careers?</p>
+            <ol>
+                <li>They were fired from their marketing job.</li>
+                <li>They want to earn a lot more money as a developer.</li>
+                <li>They discovered a new passion for web development.</li>
+                <li>Their family is forcing them to find a new profession.</li>
+                <li>They think learning to code is going to be very easy.</li>
             </ol>
-
-            <h4>Parte 2: Will ou Going To?</h4>
-            <p>Escolha a melhor opção ("will" ou a forma correta de "be going to") para completar as frases.</p>
-            <ol class="exercise-list">
-                <li>A: The phone is ringing! B: OK, I <span class="fill-in-blank">__________</span> (get) it.</li>
-                <li>We have already decided. We <span class="fill-in-blank">__________</span> (buy) a new house next year.</li>
-                <li>I think it <span class="fill-in-blank">__________</span> (be) a sunny day tomorrow. (previsão sem evidência forte)</li>
-                <li>Look at those black clouds! It <span class="fill-in-blank">__________</span> (rain).</li>
-                <li>"What are your plans for the summer?" "I <span class="fill-in-blank">__________</span> (travel) to Italy."</li>
-                <li>"I'm cold." "I <span class="fill-in-blank">__________</span> (close) the window for you."</li>
-            </ol>
-
-            <details class="gabarito">
-                <summary>Ver Respostas dos Exercícios</summary>
-                <p><em>Respostas da Parte 1: 1. am going to start, 2. is going to travel, 3. aren't going to buy, 4. are you going to do, 5. is going to look, 6. aren't going to watch, 7. Is it going to rain, 8. are going to visit.</em></p>
-                <p><em>Respostas da Parte 2: 1. will get, 2. are going to buy, 3. will be, 4. is going to rain, 5. am going to travel, 6. will close.</em></p>
+            <details>
+                <summary>Ver Gabarito</summary>
+                <p><strong>Resposta Correta: C</strong> - They discovered a new passion for web development.</p>
             </details>
         </div>
     </section>
 
-    <!-- Conclusion -->
-    <section>
-        <h3>Conclusão 🥳</h3>
-        <p>Parabéns por concluir a Aula 16! Agora você sabe como usar "be going to" para falar sobre planos, intenções e previsões baseadas em evidências, além de entender melhor a diferença entre "will" e "be going to". Isso é crucial para expressar seus objetivos futuros de forma clara.</p>
-        <p>Continue praticando e definindo suas metas em inglês!</p>
-        <p>Na Aula 17: "O Que Você Pode Fazer? – Habilidade e Permissão com "Can" e "Could"", vamos explorar os verbos modais "can" e "could" para falar sobre habilidades e pedir permissão. Até lá!</p>
+    <section id="exercicios">
+        <h3>Exercícios Práticos 📝</h3>
+        <div class="secao-exercicios">
+            <h4>Parte 1: Complete com "Be Going To"</h4>
+            <ol>
+                <li>I <span class="fill-in-blank"></span> (start) a new course next month.</li>
+                <li>She <span class="fill-in-blank"></span> (travel) to Spain.</li>
+                <li>They <span class="fill-in-blank"></span> (not / buy) a new car.</li>
+                <li>What <span class="fill-in-blank"></span> (you / do) after work?</li>
+                <li>He <span class="fill-in-blank"></span> (look) for a new apartment.</li>
+                <li>We <span class="fill-in-blank"></span> (not / watch) that movie.</li>
+                <li><span class="fill-in-blank"></span> (it / rain) later?</li>
+                <li>My parents <span class="fill-in-blank"></span> (visit) us.</li>
+            </ol>
+
+            <h4>Parte 2: Will ou Going To?</h4>
+            <ol>
+                <li>The phone is ringing! I <span class="fill-in-blank"></span> (get) it.</li>
+                <li>We have decided. We <span class="fill-in-blank"></span> (buy) a house.</li>
+                <li>I think it <span class="fill-in-blank"></span> (be) sunny tomorrow.</li>
+                <li>Look at those clouds! It <span class="fill-in-blank"></span> (rain).</li>
+                <li>"Plans?" "I <span class="fill-in-blank"></span> (travel) to Italy."</li>
+                <li>"I'm cold." "I <span class="fill-in-blank"></span> (close) the window."</li>
+            </ol>
+
+            <details>
+                <summary>Ver Respostas</summary>
+                <p><strong>Parte 1:</strong> 1. am going to start, 2. is going to travel, 3. aren't going to buy, 4. are you going to do, 5. is going to look, 6. aren't going to watch, 7. Is it going to rain, 8. are going to visit.</p>
+                <p><strong>Parte 2:</strong> 1. will get, 2. are going to buy, 3. will be, 4. is going to rain, 5. am going to travel, 6. will close.</p>
+            </details>
+        </div>
     </section>
 
-    <div class="btn-group">
-        <a href="#" class="nav-btn">⬅️ Voltar ao Menu</a>
-    </div>
+    <section id="conclusao">
+        <h3>Conclusão 🥳</h3>
+        <p>Parabéns por concluir a Aula 16! Agora você sabe como usar "be going to" para falar sobre planos concretos. Pratique definindo suas próprias metas em inglês!</p>
+    </section>
 
-    <footer>
-        <p>Aula 16: Planos e Previsões – O Futuro com "Going To"</p>
-    </footer>
-
+    <a href="#menu" class="nav-btn">← Voltar ao Menu</a>
 </div>
 
 <script>
-    // Configuração do SpeechSynthesis para Mobile
     let voices = [];
     
-    // Função para carregar vozes
+    // Carregamento de vozes robusto para Mobile
     function loadVoices() { 
         voices = window.speechSynthesis.getVoices(); 
     }
-    
-    // Garantir carregamento assíncrono (especialmente para Chrome/Android)
+
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
         window.speechSynthesis.onvoiceschanged = loadVoices;
     }
-    
-    // Tentativa inicial de carregamento
     loadVoices();
 
     function playAudio(text) {
         if ('speechSynthesis' in window) {
-            // Cancela áudio anterior para não sobrepor
             window.speechSynthesis.cancel();
-            
+
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US'; 
-            utterance.rate = 0.85; // Velocidade um pouco mais lenta para estudo
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
 
-            // Se vozes ainda não carregaram (edge case), tenta carregar agora
             if (voices.length === 0) voices = window.speechSynthesis.getVoices();
             
-            // Lógica de seleção de voz (Prioridade: Google/Premium > Nativa US > Qualquer EN)
+            // Prioriza vozes "Premium" ou "Google"
             const targetVoice = voices.find(voice => 
-                (voice.name.includes('Google') || voice.name.includes('Premium') || voice.name.includes('Enhanced')) && voice.lang === 'en-US'
+                (voice.name.includes('Google') && voice.lang === 'en-US') || 
+                (voice.name.includes('Premium') && voice.lang === 'en-US') ||
+                (voice.name.includes('Enhanced') && voice.lang === 'en-US')
+            ) || voices.find(voice => 
+                voice.lang === 'en-US' && !voice.localService
             ) || voices.find(voice => 
                 voice.lang === 'en-US'
             ) || voices.find(voice => 
                 voice.lang.startsWith('en')
             );
 
-            if (targetVoice) {
-                utterance.voice = targetVoice;
-                console.log("Voz selecionada: " + targetVoice.name);
-            }
+            if (targetVoice) utterance.voice = targetVoice;
 
             window.speechSynthesis.speak(utterance);
         } else {
-            alert("Desculpe, seu navegador não suporta áudio nativo.");
+            alert("Áudio não suportado neste navegador.");
         }
     }
 </script>
